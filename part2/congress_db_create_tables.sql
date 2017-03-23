@@ -12,10 +12,6 @@ CREATE TABLE `Legislator` (
   PRIMARY KEY (`bioguide_id`))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Congress`
--- -----------------------------------------------------
 CREATE TABLE `Congress` (
   `id` INT NOT NULL,
   `begin` DATE NOT NULL,
@@ -23,10 +19,6 @@ CREATE TABLE `Congress` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Bill`
--- -----------------------------------------------------
 CREATE TABLE `Bill` (
   `id` VARCHAR(45) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
@@ -47,10 +39,6 @@ CREATE TABLE `Bill` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Subjects`
--- -----------------------------------------------------
 CREATE TABLE `Subjects` (
   `subject` VARCHAR(128) NOT NULL,
   `Bill_id` VARCHAR(45) NOT NULL,
@@ -63,10 +51,6 @@ CREATE TABLE `Subjects` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Chamber`
--- -----------------------------------------------------
 CREATE TABLE `Chamber` (
   `id` VARCHAR(1) NOT NULL,
   `name` VARCHAR(60) NOT NULL,
@@ -74,11 +58,7 @@ CREATE TABLE `Chamber` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Votes`
--- -----------------------------------------------------
-CREATE TABLE `Votes` (
+CREATE TABLE `Vote` (
   `id` VARCHAR(45) NOT NULL,
   `chamber` VARCHAR(1) NOT NULL,
   `category` VARCHAR(45) NOT NULL,
@@ -93,39 +73,35 @@ CREATE TABLE `Votes` (
   `Bill_id` VARCHAR(45) NULL,
   `Amendment_id` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Votes_Bill1_idx` (`Bill_id` ASC),
-  INDEX `fk_Votes_Chamber1_idx` (`chamber` ASC),
-  INDEX `fk_Votes_Congress1_idx` (`congress` ASC),
-  CONSTRAINT `fk_Votes_Bill1`
+  INDEX `fk_Vote_Bill1_idx` (`Bill_id` ASC),
+  INDEX `fk_Vote_Chamber1_idx` (`chamber` ASC),
+  INDEX `fk_Vote_Congress1_idx` (`congress` ASC),
+  CONSTRAINT `fk_Vote_Bill1`
     FOREIGN KEY (`Bill_id`)
     REFERENCES `Bill` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Votes_Chamber1`
+  CONSTRAINT `fk_Vote_Chamber1`
     FOREIGN KEY (`chamber`)
     REFERENCES `Chamber` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Votes_Congress1`
+  CONSTRAINT `fk_Vote_Congress1`
     FOREIGN KEY (`congress`)
     REFERENCES `Congress` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Legislator_Vote`
--- -----------------------------------------------------
 CREATE TABLE `Legislator_Vote` (
-  `Votes_id` VARCHAR(45) NOT NULL,
+  `Vote_id` VARCHAR(45) NOT NULL,
   `bioguide_id` VARCHAR(45) NOT NULL,
   `how_voted` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Votes_id`, `bioguide_id`),
+  PRIMARY KEY (`Vote_id`, `bioguide_id`),
   INDEX `fk_Legislator_Vote_Legislator1_idx` (`bioguide_id` ASC),
-  CONSTRAINT `fk_Legislator_Vote_Votes1`
-    FOREIGN KEY (`Votes_id`)
-    REFERENCES `Votes` (`id`)
+  CONSTRAINT `fk_Legislator_Vote_Vote1`
+    FOREIGN KEY (`Vote_id`)
+    REFERENCES `Vote` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Legislator_Vote_Legislator1`
@@ -135,10 +111,6 @@ CREATE TABLE `Legislator_Vote` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Amendment`
--- -----------------------------------------------------
 CREATE TABLE `Amendment` (
   `id` VARCHAR(45) NOT NULL,
   `description` TEXT NULL,
@@ -166,10 +138,6 @@ CREATE TABLE `Amendment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `State`
--- -----------------------------------------------------
 CREATE TABLE `State` (
   `name` VARCHAR(60) NOT NULL,
   `num_districts` INT NOT NULL,
@@ -177,10 +145,6 @@ CREATE TABLE `State` (
   PRIMARY KEY (`name`))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `District`
--- -----------------------------------------------------
 CREATE TABLE `District` (
   `number` INT NOT NULL,
   `state` VARCHAR(60) NOT NULL,
@@ -193,10 +157,6 @@ CREATE TABLE `District` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Session`
--- -----------------------------------------------------
 CREATE TABLE `Session` (
   `congress` INT NOT NULL,
   `type` VARCHAR(45) NOT NULL,
@@ -210,10 +170,6 @@ CREATE TABLE `Session` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `Term`
--- -----------------------------------------------------
 CREATE TABLE `Term` (
   `bioguide_id` VARCHAR(45) NOT NULL,
   `start` DATE NOT NULL,
@@ -263,5 +219,5 @@ describe Session;
 describe State;            
 describe Subjects;         
 describe Term;             
-describe Votes;            
+describe Vote;            
 

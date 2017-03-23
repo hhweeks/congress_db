@@ -3,29 +3,29 @@ Database changed
 mysql> source congress_db_create_tables.sql;
 Empty set (0.00 sec)
 
-Query OK, 0 rows affected (0.06 sec)
+Query OK, 0 rows affected (0.08 sec)
 
-Query OK, 0 rows affected (0.06 sec)
+Query OK, 0 rows affected (0.08 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+
+Query OK, 0 rows affected (0.08 sec)
 
 Query OK, 0 rows affected (0.07 sec)
 
-Query OK, 0 rows affected (0.07 sec)
+Query OK, 0 rows affected (0.13 sec)
 
-Query OK, 0 rows affected (0.07 sec)
-
-Query OK, 0 rows affected (0.17 sec)
+Query OK, 0 rows affected (0.10 sec)
 
 Query OK, 0 rows affected (0.11 sec)
 
-Query OK, 0 rows affected (0.12 sec)
+Query OK, 0 rows affected (0.07 sec)
 
 Query OK, 0 rows affected (0.07 sec)
 
-Query OK, 0 rows affected (0.06 sec)
+Query OK, 0 rows affected (0.08 sec)
 
-Query OK, 0 rows affected (0.07 sec)
-
-Query OK, 0 rows affected (0.17 sec)
+Query OK, 0 rows affected (0.21 sec)
 
 +------------------+
 | Tables_in_wortiz |
@@ -41,7 +41,7 @@ Query OK, 0 rows affected (0.17 sec)
 | State            |
 | Subjects         |
 | Term             |
-| Votes            |
+| Vote             |
 +------------------+
 12 rows in set (0.00 sec)
 
@@ -121,7 +121,7 @@ Query OK, 0 rows affected (0.17 sec)
 +-------------+-------------+------+-----+---------+-------+
 | Field       | Type        | Null | Key | Default | Extra |
 +-------------+-------------+------+-----+---------+-------+
-| Votes_id    | varchar(45) | NO   | PRI | NULL    |       |
+| Vote_id     | varchar(45) | NO   | PRI | NULL    |       |
 | bioguide_id | varchar(45) | NO   | PRI | NULL    |       |
 | how_voted   | varchar(45) | NO   |     | NULL    |       |
 +-------------+-------------+------+-----+---------+-------+
@@ -152,7 +152,7 @@ Query OK, 0 rows affected (0.17 sec)
 | subject | varchar(128) | NO   | PRI | NULL    |       |
 | Bill_id | varchar(45)  | NO   | PRI | NULL    |       |
 +---------+--------------+------+-----+---------+-------+
-2 rows in set (0.00 sec)
+2 rows in set (0.01 sec)
 
 +-------------+---------------+------+-----+---------+-------+
 | Field       | Type          | Null | Key | Default | Extra |
@@ -186,6 +186,6 @@ Query OK, 0 rows affected (0.17 sec)
 | Bill_id      | varchar(45)  | YES  | MUL | NULL    |       |
 | Amendment_id | varchar(45)  | YES  |     | NULL    |       |
 +--------------+--------------+------+-----+---------+-------+
-13 rows in set (0.01 sec)
+13 rows in set (0.00 sec)
 
 mysql> exit
