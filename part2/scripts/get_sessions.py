@@ -7,7 +7,7 @@ data_folder = sys.argv[1]
 session_file = os.path.join(data_folder,'us', 'sessions.tsv')
 
 if not os.path.isfile(session_file):
-    print "Error: expected file ", session_file
+    print("Error: expected file ", session_file)
     sys.exit(-1)
 
 f = open(session_file,'r')
@@ -37,10 +37,11 @@ for k in congress_keys[0:-1]:
 k = congress_keys[-1]
 sql += ('''('%s', '%s', '%s');\n''' % (k, date_to_str(min(congress[k])), date_to_str(max(congress[k]))))
 
-print sql
-print '\n'
-print '\n'        
-    
+print("writing to Congress.sql")
+
+f = open("Congress.sql", "w")
+f.write(sql)
+f.close()
 
 sql = ''' INSERT INTO Session
     (congress, type, begin, end)
@@ -53,5 +54,9 @@ for line in sessions[1:-1]:
 line = sessions[-1]
 sql += ('''('%s', '%s', '%s', '%s');\n''' % (line[0], line[1], line[2], line[3]))
 
+print("writing to Session.sql")
 
-print sql
+f = open("Session.sql", "w")
+f.write(sql)
+f.close()
+
