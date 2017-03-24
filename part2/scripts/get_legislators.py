@@ -222,20 +222,18 @@ for state in keys[:-1]:
 state = keys[-1]
 ds = list(district[state])
 for d in ds[:-1]:
-    if d >= 0:
-        sql += "('"
-        sql += str(d)
-        sql += "','"
-        sql += state
-        sql += "'),\n"
-
-d = ds[-1]
-if d >= 0:
     sql += "('"
     sql += str(d)
     sql += "','"
     sql += state
-    sql += "');\n"
+    sql += "'),\n"
+
+d = ds[-1]
+sql += "('"
+sql += str(d)
+sql += "','"
+sql += state
+sql += "');\n"
 
 print("Writing to District.sql")
 f = open('District.sql', 'w')

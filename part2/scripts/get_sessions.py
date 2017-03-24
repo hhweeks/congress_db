@@ -27,7 +27,7 @@ sql = ''' INSERT INTO Congress
     VALUES
  '''
 
-congress_keys = congress.keys()
+congress_keys = list(congress.keys())
 
 date_to_str = lambda x: x.isoformat().split('T')[0]
 
