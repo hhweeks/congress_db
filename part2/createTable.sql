@@ -1,49 +1,37 @@
 mysql> use wortiz
 Database changed
-mysql> source congress_db_create_tables.sql;
-Empty set (0.00 sec)
+mysql> source congress_db_create_tables.sql
+Empty set (0.01 sec)
 
-Query OK, 0 rows affected (0.08 sec)
+Query OK, 0 rows affected (0.00 sec)
 
-Query OK, 0 rows affected (0.08 sec)
+Query OK, 0 rows affected (0.00 sec)
 
-Query OK, 0 rows affected (0.08 sec)
+Query OK, 0 rows affected (0.00 sec)
 
-Query OK, 0 rows affected (0.08 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.07 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.13 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.10 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.11 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.07 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.07 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.08 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected (0.21 sec)
+Query OK, 0 rows affected (0.01 sec)
 
-+------------------+
-| Tables_in_wortiz |
-+------------------+
-| Amendment        |
-| Bill             |
-| Chamber          |
-| Congress         |
-| District         |
-| Legislator       |
-| Legislator_Vote  |
-| Session          |
-| State            |
-| Subjects         |
-| Term             |
-| Vote             |
-+------------------+
-12 rows in set (0.00 sec)
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
 
 +---------------+-------------+------+-----+---------+-------+
 | Field         | Type        | Null | Key | Default | Extra |
@@ -56,36 +44,35 @@ Query OK, 0 rows affected (0.21 sec)
 | status_at     | date        | YES  |     | NULL    |       |
 | type          | varchar(45) | NO   |     | NULL    |       |
 | Bill_id       | varchar(45) | YES  | MUL | NULL    |       |
-| Amendment_id  | varchar(45) | YES  |     | NULL    |       |
+| Amendment_id  | varchar(45) | NO   |     | NULL    |       |
 | congress      | int(11)     | NO   | MUL | NULL    |       |
 | number        | int(11)     | NO   |     | NULL    |       |
 +---------------+-------------+------+-----+---------+-------+
 11 rows in set (0.00 sec)
 
-+-------------------+--------------+------+-----+---------+-------+
-| Field             | Type         | Null | Key | Default | Extra |
-+-------------------+--------------+------+-----+---------+-------+
-| id                | varchar(45)  | NO   | PRI | NULL    |       |
-| type              | varchar(45)  | NO   |     | NULL    |       |
-| title             | varchar(256) | NO   |     | NULL    |       |
-| popular_title     | varchar(256) | YES  |     | NULL    |       |
-| short_title       | varchar(256) | YES  |     | NULL    |       |
-| status            | varchar(45)  | YES  |     | NULL    |       |
-| introduction_date | date         | YES  |     | NULL    |       |
-| summary           | text         | YES  |     | NULL    |       |
-| congress          | int(11)      | NO   | MUL | NULL    |       |
-| number            | int(11)      | NO   |     | NULL    |       |
-+-------------------+--------------+------+-----+---------+-------+
++-------------------+---------------+------+-----+---------+-------+
+| Field             | Type          | Null | Key | Default | Extra |
++-------------------+---------------+------+-----+---------+-------+
+| id                | varchar(45)   | NO   | PRI | NULL    |       |
+| type              | varchar(45)   | NO   |     | NULL    |       |
+| title             | varchar(1024) | NO   |     | NULL    |       |
+| popular_title     | varchar(256)  | YES  |     | NULL    |       |
+| short_title       | varchar(256)  | YES  |     | NULL    |       |
+| status            | varchar(45)   | YES  |     | NULL    |       |
+| introduction_date | date          | YES  |     | NULL    |       |
+| summary           | text          | YES  |     | NULL    |       |
+| congress          | int(11)       | NO   | MUL | NULL    |       |
+| number            | int(11)       | NO   |     | NULL    |       |
++-------------------+---------------+------+-----+---------+-------+
 10 rows in set (0.00 sec)
 
-+-----------+-------------+------+-----+---------+-------+
-| Field     | Type        | Null | Key | Default | Extra |
-+-----------+-------------+------+-----+---------+-------+
-| id        | varchar(1)  | NO   | PRI | NULL    |       |
-| name      | varchar(60) | NO   |     | NULL    |       |
-| num_seats | int(11)     | NO   |     | NULL    |       |
-+-----------+-------------+------+-----+---------+-------+
-3 rows in set (0.00 sec)
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | varchar(1)  | NO   | PRI | NULL    |       |
+| name  | varchar(60) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
 
 +-------+---------+------+-----+---------+-------+
 | Field | Type    | Null | Key | Default | Extra |
@@ -137,14 +124,13 @@ Query OK, 0 rows affected (0.21 sec)
 +----------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
 
-+---------------------+-------------+------+-----+---------+-------+
-| Field               | Type        | Null | Key | Default | Extra |
-+---------------------+-------------+------+-----+---------+-------+
-| name                | varchar(60) | NO   | PRI | NULL    |       |
-| num_districts       | int(11)     | NO   |     | NULL    |       |
-| num_representatives | int(11)     | NO   |     | NULL    |       |
-+---------------------+-------------+------+-----+---------+-------+
-3 rows in set (0.00 sec)
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| name          | varchar(60) | NO   | PRI | NULL    |       |
+| num_districts | int(11)     | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
 
 +---------+--------------+------+-----+---------+-------+
 | Field   | Type         | Null | Key | Default | Extra |
@@ -152,7 +138,7 @@ Query OK, 0 rows affected (0.21 sec)
 | subject | varchar(128) | NO   | PRI | NULL    |       |
 | Bill_id | varchar(45)  | NO   | PRI | NULL    |       |
 +---------+--------------+------+-----+---------+-------+
-2 rows in set (0.01 sec)
+2 rows in set (0.00 sec)
 
 +-------------+---------------+------+-----+---------+-------+
 | Field       | Type          | Null | Key | Default | Extra |
@@ -187,5 +173,17 @@ Query OK, 0 rows affected (0.21 sec)
 | Amendment_id | varchar(45)  | YES  |     | NULL    |       |
 +--------------+--------------+------+-----+---------+-------+
 13 rows in set (0.00 sec)
+
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Legislator_id | varchar(45) | NO   | PRI | NULL    |       |
+| Bill_id       | varchar(45) | NO   | PRI | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
 
 mysql> exit
