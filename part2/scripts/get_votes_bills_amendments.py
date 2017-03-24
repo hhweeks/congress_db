@@ -39,6 +39,24 @@ def str_if_exists(d, key):
 def str_key(d, key):
     return str(d[key]).replace("'", "\\'")
 
+def get_amendment(d):
+    amendment = []
+    amendment.append(str_key(d, 'amendment_id'))
+    amendment.append(str_key(d,'description'))
+    amendment.append(str_key(d,'purpose'))
+    amendment.append(str_key(d,'status'))
+    amendment.append(str_key(d,'introduced_at'))
+    amendment.append(str_key(d,'status_at').split('T')[0])
+    amendment.append(str_key(d,'amendment_type'))
+    if 'amends_bill' in d and d['amends_bill'] and 'bill_id' in d['amends_bill']:
+        amendment.append(str_key(d['amends_bill'],'bill_id'))
+    else:
+        amendment.append(None)
+    amendment.append(str_key(d,'amendment_id'))
+    amendment.append(str_key(d,'congress'))
+    amendment.append(str_key(d,'number'))
+    return amendment
+
 def get_bill(d):
     bill = []
     bill.append(str_key(d, 'bill_id'))
@@ -117,6 +135,12 @@ for congress in congresses:
                 sponsor_table.append(s)
             subject_table.extend(get_subjects(data))
 
+    for amendment in amendment_datas:
+        with open(amendment) as f:
+            data = json.load(f)
+            amendment_table.append(get_amendment(data))
+            
+
     sql = to_sql("Bill", bill_table, bill_order)
     f = open('Bill_' + congress_number + ".sql", "w")
     print("Writing to Bill_" + congress_number + ".sql")
@@ -132,6 +156,12 @@ for congress in congresses:
     sql = to_sql("Subject", subject_table, subject_order)
     f = open('Subject_' + congress_number + ".sql", "w")
     print("Writing to Subject_" + congress_number + ".sql")
+    f.write(sql)
+    f.close()
+
+    sql = to_sql("Amendment", amendment_table, amendment_order)
+    f = open('Amendment_' + congress_number + ".sql", "w")
+    print("Writing to Amendment_" + congress_number + ".sql")
     f.write(sql)
     f.close()
 
