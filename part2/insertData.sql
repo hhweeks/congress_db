@@ -1,0 +1,12 @@
+source import_data/Chamber.sql;
+source import_data/State.sql;
+source import_data/District.sql;
+source import_data/Congress.sql;
+source import_data/Session.sql;
+source import_data/Legislator.sql;
+source import_data/Term.sql;
+source import_data/Bill_115.sql;
+source import_data/Amendment_115.sql;
+source import_data/Subject_115.sql;
+source import_data/Sponsor_115.sql;
+source import_data/Vote_115.sql;

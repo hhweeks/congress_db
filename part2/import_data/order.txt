@@ -5,3 +5,8 @@ Congress.sql
 Session.sql
 Legislator.sql
 Term.sql
+Bill files
+Subject files
+Sponsor files
+Amendment files
+Vote files

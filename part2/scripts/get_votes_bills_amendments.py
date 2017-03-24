@@ -39,6 +39,34 @@ def str_if_exists(d, key):
 def str_key(d, key):
     return str(d[key]).replace("'", "\\'")
 
+def get_vote(d):
+    vote = []
+    vote.append(str_key(d, 'vote_id'))
+    vote.append(str_key(d,'chamber'))
+    vote.append(str_key(d,'category'))
+    vote.append(str_key(d,'question'))
+    vote.append(str_key(d,'congress'))
+    vote.append(str_key(d,'session'))
+    vote.append(str_key(d,'result'))
+    vote.append(str_key(d,'requires'))
+    vote.append(str_key(d,'number'))
+    vote.append(str_key(d,'date').split('T')[0])
+    vote.append(str_key(d,'type'))
+    if 'bill' in d:
+        b = d['bill']
+        vote.append(b['type'] + str(b['number']) + "-" + str(b['congress']))
+        print("bill")
+    else:
+        vote.append(None)
+    if 'amendment' in d:
+        print(d['amendment'])
+        b = d['amendment']
+        vote.append(b['type'] + str(b['number']) + "-" + str(d['congress']))
+        print("amend")
+    else:
+        vote.append(None)
+    return vote
+
 def get_amendment(d):
     amendment = []
     amendment.append(str_key(d, 'amendment_id'))
@@ -141,6 +169,11 @@ for congress in congresses:
             amendment_table.append(get_amendment(data))
             
 
+    for vote in vote_datas:
+        with open(vote) as f:
+            data = json.load(f)
+            vote_table.append(get_vote(data))
+
     sql = to_sql("Bill", bill_table, bill_order)
     f = open('Bill_' + congress_number + ".sql", "w")
     print("Writing to Bill_" + congress_number + ".sql")
@@ -162,6 +195,12 @@ for congress in congresses:
     sql = to_sql("Amendment", amendment_table, amendment_order)
     f = open('Amendment_' + congress_number + ".sql", "w")
     print("Writing to Amendment_" + congress_number + ".sql")
+    f.write(sql)
+    f.close()
+
+    sql = to_sql("Vote", vote_table, vote_order)
+    f = open('Vote_' + congress_number + ".sql", "w")
+    print("Writing to Vote_" + congress_number + ".sql")
     f.write(sql)
     f.close()
 
