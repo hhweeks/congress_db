@@ -65,6 +65,14 @@ def get_sponsor(d):
         return sp
     return None
 
+def get_subjects(d):
+    sb = []
+    for i in d['subjects']:
+        e = []
+        e.append(str(i).replace("'", "\\'"))
+        e.append(d['bill_id'])
+        sb.append(e)
+    return sb
 
 def to_sql(name, table, order):
     sql = '''INSERT INTO '''
@@ -107,9 +115,23 @@ for congress in congresses:
             s = get_sponsor(data)
             if s:
                 sponsor_table.append(s)
+            subject_table.extend(get_subjects(data))
+
     sql = to_sql("Bill", bill_table, bill_order)
     f = open('Bill_' + congress_number + ".sql", "w")
     print("Writing to Bill_" + congress_number + ".sql")
+    f.write(sql)
+    f.close()
+
+    sql = to_sql("Sponsor", sponsor_table, sponsor_order)
+    f = open('Sponsor_' + congress_number + ".sql", "w")
+    print("Writing to Sponsor_" + congress_number + ".sql")
+    f.write(sql)
+    f.close()
+    
+    sql = to_sql("Subject", subject_table, subject_order)
+    f = open('Subject_' + congress_number + ".sql", "w")
+    print("Writing to Subject_" + congress_number + ".sql")
     f.write(sql)
     f.close()
 
