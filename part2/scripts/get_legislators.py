@@ -35,6 +35,9 @@ data = curr
 data.extend(hist)
 
 ids = []
+
+states = []
+district = {}
         
 for leg in data:
     bio = leg['bio']
@@ -66,6 +69,13 @@ for leg in data:
         term['start'] = t['start']
         term['end'] = t['end']
         term['state'] = t['state']
+
+        if t['state'] not in district:
+            district[t['state']] = set()
+
+        if 'district' in t:
+            district[t['state']].add(t['district'])
+        
         if 'party' in term:
             term['party'] = t['party']
         else:
@@ -139,4 +149,134 @@ f = open('Legislator.sql', 'w')
 f.write(sql)
 f.close()
 
+
+sql = ''' INSERT INTO Term
+    (`bioguide_id`, `start`, `end`, `type`, `state`, `url`, `district`, `party`, `chamber`)
+    VALUES
+'''
+
+for term in terms[:-1]:
+    sql += "('"
+    sql += term['bioguide_id']
+    sql += "','"
+    sql += term['start']
+    sql += "','"
+    sql += term['end']
+    sql += "','"
+    sql += term['type']
+    sql += "','"
+    sql += term['state']
+    sql += "',"
+    sql += null_check_add('url', term)
+    sql += ","
+    sql += null_check_add('district', term)
+    sql += ",'"
+    sql += term['party']
+    sql += "','"
+    sql += term['chamber']
+    sql += "'),\n"
+
+term = terms[-1]
+sql += "('"
+sql += term['bioguide_id']
+sql += "','"
+sql += term['start']
+sql += "','"
+sql += term['end']
+sql += "','"
+sql += term['type']
+sql += "','"
+sql += term['state']
+sql += "',"
+sql += null_check_add('url', term)
+sql += ","
+sql += null_check_add('district', term)
+sql += ",'"
+sql += term['party']
+sql += "','"
+sql += term['chamber']
+sql += "');\n"
+
+
+print("Writing to Term.sql")
+f = open('Term.sql', 'w')
+f.write(sql)
+f.close()
+
+sql = ''' INSERT INTO District
+    (`number`, `state`)
+    VALUES
+'''
+
+keys = list(district.keys())
+
+for state in keys[:-1]:
+    ds = list(district[state])
+    for d in ds:
+        sql += "('"
+        sql += str(d)
+        sql += "','"
+        sql += state
+        sql += "'),\n"
+
+state = keys[-1]
+ds = list(district[state])
+for d in ds[:-1]:
+    if d >= 0:
+        sql += "('"
+        sql += str(d)
+        sql += "','"
+        sql += state
+        sql += "'),\n"
+
+d = ds[-1]
+if d >= 0:
+    sql += "('"
+    sql += str(d)
+    sql += "','"
+    sql += state
+    sql += "');\n"
+
+print("Writing to District.sql")
+f = open('District.sql', 'w')
+f.write(sql)
+f.close()
+
+sql = ''' INSERT INTO State
+    (`name`, `num_districts`)
+    VALUES
+'''
+
+keys = list(district.keys())
+
+for state in keys[:-1]:
+    sql += "('"
+    sql += state
+    sql += "','"
+    sql += str(len(list(filter(lambda x: x >= 0, district[state]))))
+    sql += "'),\n"
+
+state = keys[-1]
+sql += "('"
+sql += state
+sql += "','"
+sql += str(len(list(filter(lambda x: x >= 0, district[state]))))
+sql += "');\n"
+
+print("Writing to State.sql")
+f = open('State.sql', 'w')
+f.write(sql)
+f.close()
+
+sql = ''' INSERT INTO Chamber
+    (`id`, `name`)
+    VALUES
+    ('s', 'Senate'),
+    ('h', 'House of Representatives');
+'''
+
+print("Writing to Chamber.sql")
+f = open('Chamber.sql', 'w')
+f.write(sql)
+f.close()
 

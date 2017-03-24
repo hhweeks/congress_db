@@ -54,7 +54,6 @@ ENGINE = InnoDB;
 CREATE TABLE `Chamber` (
   `id` VARCHAR(1) NOT NULL,
   `name` VARCHAR(60) NOT NULL,
-  `num_seats` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -141,7 +140,6 @@ ENGINE = InnoDB;
 CREATE TABLE `State` (
   `name` VARCHAR(60) NOT NULL,
   `num_districts` INT NOT NULL,
-  `num_representatives` INT NOT NULL,
   PRIMARY KEY (`name`))
 ENGINE = InnoDB;
 
