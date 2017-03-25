@@ -4,6 +4,9 @@ createLog.txt -- is a log of running createTable on chester
 insertData.sql -- inserts our real data (expects a folder import_data)
 insertDataLog.txt -- is a log of importing all of our data
 import_data.tar.gz -- tarball containing our script transformed data to sql statements
+
+NOTES:
+
 Our data was taken from govtrack.us bulk data
 
 The scripts/ folder contains our files for parsing data to mysql statements.
