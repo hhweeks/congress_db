@@ -1,0 +1,43 @@
+Congress_ERDiagram.pdf -- our current ER diagram created in Mysqlworkbench
+createTable.sql -- creates our tables
+createLog.txt -- is a log of running createTable on chester
+insertData.sql -- inserts our real data (expects a folder import_data)
+insertDataLog.txt -- is a log of importing all of our data
+import_data.tar.gz -- tarball containing our script transformed data to sql statements
+Our data was taken from govtrack.us bulk data
+
+The scripts/ folder contains our files for parsing data to mysql statements.
+
+the scripts expects data to be in the same format as govtrack.us or it may
+fail spectacularly.
+
+We parsed into multiple value insert statements, and because 
+mysql was crashing on a macbook limited the number of rows inserted
+in a statement to 500 at a time for some of the larger tables.
+
+Because of this limitation the insertDataLog.txt is around 25000 lines long
+
+Right now our tables sizes look like:
+
+mysql> SELECT TABLE_NAME, TABLE_ROWS FROM `information_schema`.`tables`
+    -> WHERE `table_schema` = 'wortiz';
++-----------------+------------+
+| TABLE_NAME      | TABLE_ROWS |
++-----------------+------------+
+| Amendment       |      30805 |
+| Bill            |      49866 |
+| Chamber         |          2 |
+| Congress        |        115 |
+| District        |        639 |
+| Legislator      |      11794 |
+| Legislator_Vote |    3565408 |
+| Session         |        303 |
+| Sponsor         |      12881 |
+| State           |         59 |
+| Subject         |     532167 |
+| Term            |      12592 |
+| Vote            |      10353 |
++-----------------+------------+
+13 rows in set (0.01 sec)
+
+Apparently this might not be accurate but it appears we meet the requirements of 100,000 entries for some tables.
