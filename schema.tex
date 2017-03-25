@@ -1,0 +1,30 @@
+\documentclass{article}
+\begin{document}
+
+\iffalse
+Base relations:\\ Party ( \underline{name} )\\ Congressperson ( \underline{name} ) \\ Chamber of Congress ( \underline{name}, seats )\\ Bill ( \underline{name}, \underline{bill\_ID}, text )\\ State ( \underline{name}, number of representatives ) \\ Senator ( \underline{name} ) \\ Representative ( \underline{name} , district ) \\
+\\
+Relations from relationships: \\
+Congress Person ( \underline{Name}, Party, Chamber, State, Is\_a ) $<$--chamber define is\_a relationship? \\ 
+Bill ( \underline{Name}, \underline{Bill\_ID}, Text, Sponsors, Chamber ) $<$--outcome of vote? \\ 
+Represents district (\underline{district name}, representative, state) \\
+Vote ( \underline{bill}, \underline{bill\_id}, chamber, how voted ) $<$-- want to be able to link congress person to a vote
+\fi
+
+\noindent
+Schema:\\
+Chamber(\underline{id}, name)\\
+Term(\underline{bioguide\_id},\underline{start},\underline{end}, type, state, url, district, party, chamber)\\
+District(\underline{number},\underline{state})\\
+State(\underline{name}, num\_districts)\\
+Legislator(\underline{bioguide\_id}, Last Name, First Name, birthday, gender, wikipedia\_id, govtrack\_id, official\_full\_name)\\
+Sponsors(\underline{Legislator\_id},\underline{Bill\_id})\\
+Legislator\_Vote(\underline{Vote\_id}, \underline{bioguide\_id}, how\_voted)\\
+Bill(\underline{id}, type, title, popular\_title, short\_title, status, summary, congress, number)\\
+Amendment(\underline{id}, description, purpose, status, introduced\_at, type, Bill\_id, Amendmant\_id, congress, number)\\
+Vote(\underline{id}, chamber, category, question, congress, session, result, requires, number, date, type, Bill\_id, Amendment\_id)\\
+Subject(\underline{subject}, Bill\_id)\\
+Session(\underline{congress}, \underline{type}, begin, end)\\
+Congress(\underline{id}, begin, end)\\
+
+\end{document}

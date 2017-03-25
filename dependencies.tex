@@ -1,0 +1,18 @@
+\documentclass{article}
+\begin{document}
+\noindent
+Minimal basis: there are no functional dependencies in our data, therefore the minimal set which forms a basis in each relation is just the key for that relation:\\
+Chamber: \underline{id}\\
+Term: \underline{bioguide\_id},\underline{start},\underline{end}\\
+District: \underline{number}\\
+State:\underline{name}\\
+Legislator: \underline{bioguide\_id}\\
+Sponsors: \underline{Legislator\_id},\underline{Bill\_id}\\
+Legislator\_Vote: \underline{Vote\_id}, \underline{bioguide\_id}\\
+Bill: \underline{id}\\
+Amendment: \underline{id}\\
+Vote: \underline{id}\\
+Subject: \underline{subject}\\
+Session: \underline{congress}, \underline{type}\\
+Congress: \underline{id}\\
+\end{document}
