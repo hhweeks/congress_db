@@ -56,7 +56,7 @@ for leg in data:
     name = leg['name']
     copy_if_exists('official_full', name, entry)
     entry['first_name'] = name['first']
-    entry['last_name'] = name['first']
+    entry['last_name'] = name['last']
 
     for k in entry:
         entry[k] = str(entry[k]).replace("'", "\\'")
@@ -76,7 +76,7 @@ for leg in data:
         if 'district' in t:
             district[t['state']].add(t['district'])
         
-        if 'party' in term:
+        if 'party' in t:
             term['party'] = t['party']
         else:
             term['party'] = 'Unknown'
