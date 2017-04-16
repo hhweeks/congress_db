@@ -1,4 +1,4 @@
-% Created 2017-04-16 Sun 15:47
+% Created 2017-04-16 Sun 16:38
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -224,18 +224,21 @@ We increased the speed of this dramatically by creating an index on their birthd
 \begin{verbatim}
 create index bday on Legislator (birthday);
 \end{verbatim}
+From our index log file using this index the query went from 12.58 sec to 0.07 sec
 
 \item When finding all pairs of legislators with the same last name speed was
 imporved by adding a index on `Last Name` column
 \begin{verbatim}
 create index lastName on Legislator (`Last Name`);
 \end{verbatim}
+From our index log file the query went from 6.97 sec to 0.17 sec
 
 \item When counting unique ways in which legislators have voted the query speed
 was increased by added an index on the corresponding column:
 \begin{verbatim}
 create index voteindex on Legislator_Vote(how_voted);
 \end{verbatim}
+From our index log file the query went from 1.43 sec to 0.27 sec
 \end{enumerate}
 
 \section{Modifying data from the last project}

@@ -215,18 +215,22 @@ _________________
      ,----
      | create index bday on Legislator (birthday);
      `----
+     From our index log file using this index the query went from 12.58
+     sec to 0.07 sec
 
   2. When finding all pairs of legislators with the same last name speed
      was imporved by adding a index on `Last Name` column
      ,----
      | create index lastName on Legislator (`Last Name`);
      `----
+     From our index log file the query went from 6.97 sec to 0.17 sec
 
   3. When counting unique ways in which legislators have voted the query
      speed was increased by added an index on the corresponding column:
      ,----
      | create index voteindex on Legislator_Vote(how_voted);
      `----
+     From our index log file the query went from 1.43 sec to 0.27 sec
 
 
 4 Modifying data from the last project
