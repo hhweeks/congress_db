@@ -1,0 +1,265 @@
+mysql> source queries.sql;
++-------+-------------+
+| type  | count(type) |
++-------+-------------+
+| hamdt |         917 |
+| samdt |        3892 |
++-------+-------------+
+2 rows in set, 1 warning (0.03 sec)
+
++-------------+------------+-------------+------------+
+| bioguide_id | First Name | Last Name   | party      |
++-------------+------------+-------------+------------+
+| A000001     | Fred       | Aandahl     | Republican |
+| A000002     | Watkins    | Abbitt      | Democrat   |
+| A000003     | Joel       | Abbott      | Republican |
+| A000004     | Amos       | Abbott      | Whig       |
+| A000005     | Jo         | Abbott      | Democrat   |
+| A000006     | Joseph     | Abbott      | Republican |
+| A000007     | Josiah     | Abbott      | Democrat   |
+| A000008     | Nehemiah   | Abbott      | Republican |
+| A000010     | Hazel      | Abel        | Republican |
+| A000013     | John       | Abercrombie | Democrat   |
++-------------+------------+-------------+------------+
+10 rows in set (0.00 sec)
+
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+| birthday   | bioguide_id | First Name  | Last Name           | bioguide_id | First Name  | Last Name           |
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+| 1840-06-18 | B000381     | Risden      | Bennett             | A000034     | George      | Adams               |
+| 1863-02-07 | B000225     | Edward      | Bassett             | A000057     | Charles     | Adkins              |
+| 1815-12-15 | A000335     | David       | Atwood              | A000058     | Garnett     | Adrain              |
+| 1808-06-18 | B000209     | Thomas      | Bartlett            | A000081     | Cyrus       | Aldrich             |
+| 1841-11-06 | B000355     | Frank       | Beltzhoover         | A000083     | Nelson      | Aldrich             |
+| 1853-03-11 | A000187     | George      | Anderson            | A000087     | William     | Aldrich             |
+| 1853-03-11 | A000087     | William     | Aldrich             | A000187     | George      | Anderson            |
+...
+... TRUNCATED
+...
+| 1901-03-18 | W000604     | Joseph      | Wilson              | T000018     | Joseph      | Talbot              |
+| 1818-11-27 | W000746     | Jacob       | Wortendyke          | T000144     | Andrew      | Thayer              |
+| 1857-12-22 | W000580     | Frank       | Wilson              | T000147     | John        | Thayer              |
+| 1802-06-12 | Y000042     | John        | Young               | T000261     | John        | Tibbatts            |
+| 1776-03-08 | W000495     | David       | Williams            | T000442     | Samuel      | Tweedy              |
+| 1821-09-04 | W000613     | Stephen     | Wilson              | V000061     | Robert      | Van Valkenburgh     |
+| 1758-12-23 | W000606     | Nathan      | Wilson              | V000104     | John        | Vining              |
+| 1812-02-17 | W000757     | Daniel      | Wright              | W000113     | Eliakim     | Walton              |
+| 1941-10-12 | W000777     | Joseph      | Wyatt               | W000177     | Craig       | Washington          |
+| 1829-05-29 | Y000016     | Jesse       | Yeates              | W000512     | Jeremiah    | Williams            |
+| 1836-11-15 | Y000048     | Pierce      | Young               | W000533     | Richard     | Williams            |
+| 1829-05-29 | W000512     | Jeremiah    | Williams            | Y000016     | Jesse       | Yeates              |
+| 1836-11-15 | W000533     | Richard     | Williams            | Y000048     | Pierce      | Young               |
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+1940 rows in set (12.55 sec)
+
++-------------+---------+----------+-------------------+----------+---------+--------+----------+--------+------------+-------------------+---------+--------------+
+| id          | chamber | category | question          | congress | session | result | requires | number | date       | type              | Bill_id | Amendment_id |
++-------------+---------+----------+-------------------+----------+---------+--------+----------+--------+------------+-------------------+---------+--------------+
+| h1-110.2007 | h       | quorum   | Call by States    |      110 |    2007 | Passed | QUORUM   |      1 | 2007-01-04 | Call by States    | NULL    | NULL         |
+| h1-110.2008 | h       | quorum   | Call of the House |      110 |    2008 | Passed | QUORUM   |      1 | 2008-01-15 | Call of the House | NULL    | NULL         |
+| h1-111.2009 | h       | quorum   | Call of the House |      111 |    2009 | Passed | QUORUM   |      1 | 2009-01-06 | Call of the House | NULL    | NULL         |
+| h1-111.2010 | h       | quorum   | Call of the House |      111 |    2010 | Passed | QUORUM   |      1 | 2010-01-12 | Call of the House | NULL    | NULL         |
+| h1-112.2011 | h       | quorum   | Call of the House |      112 |    2011 | Passed | QUORUM   |      1 | 2011-01-05 | Call of the House | NULL    | NULL         |
+| h1-112.2012 | h       | quorum   | Call of the House |      112 |    2012 | Passed | QUORUM   |      1 | 2012-01-17 | Call of the House | NULL    | NULL         |
+| h1-113.2013 | h       | quorum   | Call of the House |      113 |    2013 | Passed | QUORUM   |      1 | 2013-01-03 | Call of the House | NULL    | NULL         |
+| h1-113.2014 | h       | quorum   | Call of the House |      113 |    2014 | Passed | QUORUM   |      1 | 2014-01-07 | Call of the House | NULL    | NULL         |
+| h1-114.2015 | h       | quorum   | Call by States    |      114 |    2015 | Passed | QUORUM   |      1 | 2015-01-06 | Call by States    | NULL    | NULL         |
+| h1-114.2016 | h       | quorum   | Call of the House |      114 |    2016 | Passed | QUORUM   |      1 | 2016-01-05 | Call of the House | NULL    | NULL         |
++-------------+---------+----------+-------------------+----------+---------+--------+----------+--------+------------+-------------------+---------+--------------+
+10 rows in set (0.00 sec)
+
++--------------------------+-------+
+| party                    | count |
++--------------------------+-------+
+| Democrat                 |  5225 |
+| Republican               |  5089 |
+| Whig                     |   564 |
+| Federalist               |   343 |
+| Jackson                  |   338 |
+| Unknown                  |   236 |
+| Adams                    |    99 |
+| Ind. Republican-Democrat |    70 |
+| American                 |    44 |
+| Unionist                 |    43 |
++--------------------------+-------+
+10 rows in set (0.11 sec)
+
++-------------+------------+------------+------------+
+| bioguide_id | First Name | Last Name  | how_voted  |
++-------------+------------+------------+------------+
+| A000055     | Robert     | Aderholt   | Aye        |
+| A000367     | Justin     | Amash      | Aye        |
+| A000369     | Mark       | Amodei     | Aye        |
+| B000013     | Spencer    | Bachus     | Not Voting |
+| B000213     | Joe        | Barton     | Aye        |
+| B000287     | Xavier     | Becerra    | No         |
+| B000490     | Sanford    | Bishop     | No         |
+| B000574     | Earl       | Blumenauer | No         |
+| B000755     | Kevin      | Brady      | Aye        |
+| B000911     | Corrine    | Brown      | No         |
++-------------+------------+------------+------------+
+10 rows in set (8.23 sec)
+
++-----------+---------------+
+| Last Name | Bill_id       |
++-----------+---------------+
+| Anderson  | hconres26-115 |
+| Anderson  | hconres26-115 |
+| Anderson  | hconres26-115 |
+| Anderson  | hconres26-115 |
+| Anderson  | hconres26-115 |
+| Anderson  | hconres26-115 |
+| Anderson  | hconres26-115 |
+| Andrews   | hconres26-115 |
+| Andrews   | hconres26-115 |
+| Andrews   | hconres26-115 |
++-----------+---------------+
+10 rows in set (0.00 sec)
+
++-------------+-------+---------+-------------------+----------+--------+
+| id          | type  | status  | introduction_date | congress | number |
++-------------+-------+---------+-------------------+----------+--------+
+| hamdt1-110  | hamdt | fail    | 2007-01-04        |      110 |      1 |
+| hamdt1-111  | hamdt | fail    | 2009-01-06        |      111 |      1 |
+| hamdt1-112  | hamdt | fail    | 2011-01-05        |      112 |      1 |
+| hamdt1-113  | hamdt | fail    | 2013-01-03        |      113 |      1 |
+| hamdt1-114  | hamdt | fail    | 2015-01-06        |      114 |      1 |
+| hamdt1-115  | hamdt | fail    | 2017-01-03        |      115 |      1 |
+| hamdt10-110 | hamdt | offered | 2007-02-08        |      110 |     10 |
+| hamdt10-111 | hamdt | pass    | 2009-01-21        |      111 |     10 |
+| hamdt10-112 | hamdt | offered | 2011-02-10        |      112 |     10 |
+| hamdt10-113 | hamdt | pass    | 2013-01-15        |      113 |     10 |
++-------------+-------+---------+-------------------+----------+--------+
+10 rows in set (0.20 sec)
+
++------------+-------+
+| party      | count |
++------------+-------+
+| Democrat   |   141 |
+| Republican |   230 |
++------------+-------+
+2 rows in set (0.00 sec)
+
++------------+-----------+-------+
+| First Name | Last Name | state |
++------------+-----------+-------+
+| Don        | Young     | AK    |
+| Martha     | Roby      | AL    |
+| Bradley    | Byrne     | AL    |
+| Gary       | Palmer    | AL    |
+| Terri      | Sewell    | AL    |
+| Mike       | Rogers    | AL    |
+| Robert     | Aderholt  | AL    |
+| Mo         | Brooks    | AL    |
+| French     | Hill      | AR    |
+| Steve      | Womack    | AR    |
++------------+-----------+-------+
+10 rows in set (0.04 sec)
+
++-------------------------------------------+
+| subject                                   |
++-------------------------------------------+
+| Congress                                  |
+| Congressional operations and organization |
+| Education                                 |
+| Higher education                          |
+| Student aid and college costs             |
+| Vocational and technical education        |
+| Human rights                              |
+| International affairs                     |
+| Iran                                      |
+| Middle East                               |
++-------------------------------------------+
+10 rows in set (0.00 sec)
+
++-------------+------------+---------------+-------+
+| bioguide_id | First Name | Last Name     | Terms |
++-------------+------------+---------------+-------+
+| D000355     | John       | Dingell       |    30 |
+| C000714     | John       | Conyers       |    27 |
+| R000053     | Charles    | Rangel        |    23 |
+| Y000033     | Don        | Young         |    23 |
+| M000133     | Edward     | Markey        |    22 |
+| Y000031     | C.         | Young         |    22 |
+| O000007     | David      | Obey          |    21 |
+| M000725     | George     | Miller        |    20 |
+| S000244     | F.         | Sensenbrenner |    20 |
+| S000810     | Fortney    | Stark         |    20 |
++-------------+------------+---------------+-------+
+10 rows in set (0.04 sec)
+
++-------------+--------------+----------------+-------------+--------------+----------------+
+| bioguide_id | First Name   | Last Name      | bioguide_id | First Name   | Last Name      |
++-------------+--------------+----------------+-------------+--------------+----------------+
+| A000004     | Amos         | Abbott         | A000003     | Joel         | Abbott         |
+| A000005     | Jo           | Abbott         | A000003     | Joel         | Abbott         |
+| A000006     | Joseph       | Abbott         | A000003     | Joel         | Abbott         |
+| A000007     | Josiah       | Abbott         | A000003     | Joel         | Abbott         |
+| A000008     | Nehemiah     | Abbott         | A000003     | Joel         | Abbott         |
+| A000003     | Joel         | Abbott         | A000004     | Amos         | Abbott         |
+| A000005     | Jo           | Abbott         | A000004     | Amos         | Abbott         |
+| A000006     | Joseph       | Abbott         | A000004     | Amos         | Abbott         |
+| A000007     | Josiah       | Abbott         | A000004     | Amos         | Abbott         |
+| A000008     | Nehemiah     | Abbott         | A000004     | Amos         | Abbott         |
+| A000003     | Joel         | Abbott         | A000005     | Jo           | Abbott         |
+...
+... TRUNCATED
+...
+| Y000046     | Lafayette    | Young          | Y000066     | David        | Young          |
+| Y000047     | Milton       | Young          | Y000066     | David        | Young          |
+| Y000048     | Pierce       | Young          | Y000066     | David        | Young          |
+| Y000049     | Richard      | Young          | Y000066     | David        | Young          |
+| Y000050     | Richard      | Young          | Y000066     | David        | Young          |
+| Y000051     | Robert       | Young          | Y000066     | David        | Young          |
+| Y000052     | Samuel       | Young          | Y000066     | David        | Young          |
+| Y000053     | Stephen      | Young          | Y000066     | David        | Young          |
+| Y000054     | Thomas       | Young          | Y000066     | David        | Young          |
+| Y000055     | Timothy      | Young          | Y000066     | David        | Young          |
+| Y000056     | William      | Young          | Y000066     | David        | Young          |
+| Y000057     | William      | Young          | Y000066     | David        | Young          |
+| Y000064     | Todd         | Young          | Y000066     | David        | Young          |
++-------------+--------------+----------------+-------------+--------------+----------------+
+110584 rows in set (8.18 sec)
+
++--------------------+
+| how_voted          |
++--------------------+
+| Present            |
+| Not Voting         |
+| Nay                |
+| Yea                |
+| No                 |
+| Aye                |
+| Pelosi             |
+| Boehner            |
+| Shuler             |
+| Lewis (GA)         |
+| Costa              |
+| Cardoza            |
+| Cooper             |
+| Kaptur             |
+| Hoyer              |
+| Labrador           |
+| Lewis              |
+| Allen West         |
+| Cantor             |
+| Colin Powell       |
+| Jordan             |
+| David Walker       |
+| Dingell            |
+| Amash              |
+| Gohmert            |
+| Duncan (SC)        |
+| Webster (FL)       |
+| Hon. Rand Paul     |
+| Gowdy              |
+| McCarthy           |
+| DeFazio            |
+| Yoho               |
+| Hon. Jeff Sessions |
+| Ryan (WI)          |
+| Ryan (OH)          |
++--------------------+
+35 rows in set (1.50 sec)
+
+mysql> exit

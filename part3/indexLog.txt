@@ -1,0 +1,235 @@
+mysql> use wortiz
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> source index.sql;
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+| birthday   | bioguide_id | First Name  | Last Name           | bioguide_id | First Name  | Last Name           |
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+| 1840-06-18 | B000381     | Risden      | Bennett             | A000034     | George      | Adams               |
+| 1863-02-07 | B000225     | Edward      | Bassett             | A000057     | Charles     | Adkins              |
+| 1815-12-15 | A000335     | David       | Atwood              | A000058     | Garnett     | Adrain              |
+| 1808-06-18 | B000209     | Thomas      | Bartlett            | A000081     | Cyrus       | Aldrich             |
+| 1841-11-06 | B000355     | Frank       | Beltzhoover         | A000083     | Nelson      | Aldrich             |
+| 1853-03-11 | A000187     | George      | Anderson            | A000087     | William     | Aldrich             |
+...
+... TRUNCATED
+...
+| 1802-06-12 | Y000042     | John        | Young               | T000261     | John        | Tibbatts            |
+| 1776-03-08 | W000495     | David       | Williams            | T000442     | Samuel      | Tweedy              |
+| 1821-09-04 | W000613     | Stephen     | Wilson              | V000061     | Robert      | Van Valkenburgh     |
+| 1758-12-23 | W000606     | Nathan      | Wilson              | V000104     | John        | Vining              |
+| 1812-02-17 | W000757     | Daniel      | Wright              | W000113     | Eliakim     | Walton              |
+| 1941-10-12 | W000777     | Joseph      | Wyatt               | W000177     | Craig       | Washington          |
+| 1829-05-29 | Y000016     | Jesse       | Yeates              | W000512     | Jeremiah    | Williams            |
+| 1836-11-15 | Y000048     | Pierce      | Young               | W000533     | Richard     | Williams            |
+| 1829-05-29 | W000512     | Jeremiah    | Williams            | Y000016     | Jesse       | Yeates              |
+| 1836-11-15 | W000533     | Richard     | Williams            | Y000048     | Pierce      | Young               |
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+1940 rows in set (12.58 sec)
+
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+| birthday   | bioguide_id | First Name  | Last Name           | bioguide_id | First Name  | Last Name           |
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+| 1786-09-10 | A000004     | Amos        | Abbott              | M000227     | William     | Mason               |
+| 1903-05-16 | A000016     | Thomas      | Abernethy           | H000231     | Vincent     | Harrington          |
+| 1827-01-11 | A000020     | Ephraim     | Acker               | C000119     | George      | Cannon              |
+| 1757-01-09 | A000026     | John        | Adair               | J000012     | George      | Jackson             |
+| 1875-10-29 | A000028     | Alva        | Adams               | J000159     | Luther      | Johnson             |
+| 1807-08-18 | A000032     | Charles     | Adams               | S000204     | Zeno        | Scudder             |
+| 1824-04-10 | A000033     | Charles     | Adams               | S000571     | John        | Smith               |
+...
+... TRUNCATED
+...
+| 1829-05-29 | Y000016     | Jesse       | Yeates              | W000512     | Jeremiah    | Williams            |
+| 1882-03-14 | Y000021     | Thomas      | Yon                 | C000412     | Robert      | Clancy              |
+| 1802-06-12 | Y000042     | John        | Young               | K000122     | William     | Kennon              |
+| 1802-06-12 | Y000042     | John        | Young               | S000604     | Robert      | Smith               |
+| 1802-06-12 | Y000042     | John        | Young               | T000261     | John        | Tibbatts            |
+| 1834-11-04 | Y000045     | John        | Young               | C000109     | Allen       | Candler             |
+| 1836-11-15 | Y000048     | Pierce      | Young               | M001071     | Nicholas    | Muller              |
+| 1836-11-15 | Y000048     | Pierce      | Young               | W000533     | Richard     | Williams            |
+| 1810-06-12 | Y000061     | David       | Yulee               | R000030     | William     | Ramsey              |
++------------+-------------+-------------+---------------------+-------------+-------------+---------------------+
+1940 rows in set (0.07 sec)
+
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
++-------------+--------------+----------------+-------------+--------------+----------------+
+| bioguide_id | First Name   | Last Name      | bioguide_id | First Name   | Last Name      |
++-------------+--------------+----------------+-------------+--------------+----------------+
+| A000004     | Amos         | Abbott         | A000003     | Joel         | Abbott         |
+| A000005     | Jo           | Abbott         | A000003     | Joel         | Abbott         |
+| A000006     | Joseph       | Abbott         | A000003     | Joel         | Abbott         |
+| A000007     | Josiah       | Abbott         | A000003     | Joel         | Abbott         |
+| A000008     | Nehemiah     | Abbott         | A000003     | Joel         | Abbott         |
+| A000003     | Joel         | Abbott         | A000004     | Amos         | Abbott         |
+| A000005     | Jo           | Abbott         | A000004     | Amos         | Abbott         |
+...
+... TRUNCATED
+...
+| Y000036     | George       | Young          | Y000066     | David        | Young          |
+| Y000037     | Hiram        | Young          | Y000066     | David        | Young          |
+| Y000038     | Horace       | Young          | Y000066     | David        | Young          |
+| Y000039     | Isaac        | Young          | Y000066     | David        | Young          |
+| Y000040     | James        | Young          | Y000066     | David        | Young          |
+| Y000041     | James        | Young          | Y000066     | David        | Young          |
+| Y000042     | John         | Young          | Y000066     | David        | Young          |
+| Y000043     | John         | Young          | Y000066     | David        | Young          |
+| Y000044     | John         | Young          | Y000066     | David        | Young          |
+| Y000045     | John         | Young          | Y000066     | David        | Young          |
+| Y000046     | Lafayette    | Young          | Y000066     | David        | Young          |
+| Y000047     | Milton       | Young          | Y000066     | David        | Young          |
+| Y000048     | Pierce       | Young          | Y000066     | David        | Young          |
+| Y000049     | Richard      | Young          | Y000066     | David        | Young          |
+| Y000050     | Richard      | Young          | Y000066     | David        | Young          |
+| Y000051     | Robert       | Young          | Y000066     | David        | Young          |
+| Y000052     | Samuel       | Young          | Y000066     | David        | Young          |
+| Y000053     | Stephen      | Young          | Y000066     | David        | Young          |
+| Y000054     | Thomas       | Young          | Y000066     | David        | Young          |
+| Y000055     | Timothy      | Young          | Y000066     | David        | Young          |
+| Y000056     | William      | Young          | Y000066     | David        | Young          |
+| Y000057     | William      | Young          | Y000066     | David        | Young          |
+| Y000064     | Todd         | Young          | Y000066     | David        | Young          |
++-------------+--------------+----------------+-------------+--------------+----------------+
+110584 rows in set (6.97 sec)
+
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
++-------------+--------------+----------------+-------------+--------------+----------------+
+| bioguide_id | First Name   | Last Name      | bioguide_id | First Name   | Last Name      |
++-------------+--------------+----------------+-------------+--------------+----------------+
+| A000003     | Joel         | Abbott         | A000004     | Amos         | Abbott         |
+| A000003     | Joel         | Abbott         | A000005     | Jo           | Abbott         |
+| A000003     | Joel         | Abbott         | A000006     | Joseph       | Abbott         |
+| A000003     | Joel         | Abbott         | A000007     | Josiah       | Abbott         |
+| A000003     | Joel         | Abbott         | A000008     | Nehemiah     | Abbott         |
+| A000004     | Amos         | Abbott         | A000003     | Joel         | Abbott         |
+| A000004     | Amos         | Abbott         | A000005     | Jo           | Abbott         |
+...
+... TRUNCATED
+...
+| Y000066     | David        | Young          | Y000036     | George       | Young          |
+| Y000066     | David        | Young          | Y000037     | Hiram        | Young          |
+| Y000066     | David        | Young          | Y000038     | Horace       | Young          |
+| Y000066     | David        | Young          | Y000039     | Isaac        | Young          |
+| Y000066     | David        | Young          | Y000040     | James        | Young          |
+| Y000066     | David        | Young          | Y000041     | James        | Young          |
+| Y000066     | David        | Young          | Y000042     | John         | Young          |
+| Y000066     | David        | Young          | Y000043     | John         | Young          |
+| Y000066     | David        | Young          | Y000044     | John         | Young          |
+| Y000066     | David        | Young          | Y000045     | John         | Young          |
+| Y000066     | David        | Young          | Y000046     | Lafayette    | Young          |
+| Y000066     | David        | Young          | Y000047     | Milton       | Young          |
+| Y000066     | David        | Young          | Y000048     | Pierce       | Young          |
+| Y000066     | David        | Young          | Y000049     | Richard      | Young          |
+| Y000066     | David        | Young          | Y000050     | Richard      | Young          |
+| Y000066     | David        | Young          | Y000051     | Robert       | Young          |
+| Y000066     | David        | Young          | Y000052     | Samuel       | Young          |
+| Y000066     | David        | Young          | Y000053     | Stephen      | Young          |
+| Y000066     | David        | Young          | Y000054     | Thomas       | Young          |
+| Y000066     | David        | Young          | Y000055     | Timothy      | Young          |
+| Y000066     | David        | Young          | Y000056     | William      | Young          |
+| Y000066     | David        | Young          | Y000057     | William      | Young          |
+| Y000066     | David        | Young          | Y000064     | Todd         | Young          |
++-------------+--------------+----------------+-------------+--------------+----------------+
+110584 rows in set (0.17 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
++--------------------+
+| how_voted          |
++--------------------+
+| Present            |
+| Not Voting         |
+| Nay                |
+| Yea                |
+| No                 |
+| Aye                |
+| Pelosi             |
+| Boehner            |
+| Shuler             |
+| Lewis (GA)         |
+| Costa              |
+| Cardoza            |
+| Cooper             |
+| Kaptur             |
+| Hoyer              |
+| Labrador           |
+| Lewis              |
+| Allen West         |
+| Cantor             |
+| Colin Powell       |
+| Jordan             |
+| David Walker       |
+| Dingell            |
+| Amash              |
+| Gohmert            |
+| Duncan (SC)        |
+| Webster (FL)       |
+| Hon. Rand Paul     |
+| Gowdy              |
+| McCarthy           |
+| DeFazio            |
+| Yoho               |
+| Hon. Jeff Sessions |
+| Ryan (WI)          |
+| Ryan (OH)          |
++--------------------+
+35 rows in set (1.43 sec)
+
+Query OK, 0 rows affected (12.49 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
++--------------------+
+| how_voted          |
++--------------------+
+| Allen West         |
+| Amash              |
+| Aye                |
+| Boehner            |
+| Cantor             |
+| Cardoza            |
+| Colin Powell       |
+| Cooper             |
+| Costa              |
+| David Walker       |
+| DeFazio            |
+| Dingell            |
+| Duncan (SC)        |
+| Gohmert            |
+| Gowdy              |
+| Hon. Jeff Sessions |
+| Hon. Rand Paul     |
+| Hoyer              |
+| Jordan             |
+| Kaptur             |
+| Labrador           |
+| Lewis              |
+| Lewis (GA)         |
+| McCarthy           |
+| Nay                |
+| No                 |
+| Not Voting         |
+| Pelosi             |
+| Present            |
+| Ryan (OH)          |
+| Ryan (WI)          |
+| Shuler             |
+| Webster (FL)       |
+| Yea                |
+| Yoho               |
++--------------------+
+35 rows in set (0.01 sec)
+
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> exit

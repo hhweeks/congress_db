@@ -8,13 +8,13 @@ select type, count(type) from Amendment where introduced_at < '2008' group by ty
 2
 Which legislators were born before the outset of WWI?
 */
-Select distinct bioguide_id, `First Name` , `Last Name`, party  from Legislator natural join Term where birthday < '1914-07-28' limit 10;
+select distinct bioguide_id, `First Name` , `Last Name`, party  from Legislator natural join Term where birthday < '1914-07-28' limit 10;
 
 /*
 3
 Find all Legislators that shared a birthday
 */
-select L1.birthday, L1.bioguide_id, L1.`First Name`, L1.`Last Name`, L2.bioguide_id, L2.`First Name`, L2.`Last Name` from Legislator L1, Legislator L2 where L1.birthday = L2.birthday and L1.bioguide_id != L2.bioguide_id limit 10;
+select L1.birthday, L1.bioguide_id, L1.`First Name`, L1.`Last Name`, L2.bioguide_id, L2.`First Name`, L2.`Last Name` from Legislator L1, Legislator L2 where L1.birthday = L2.birthday and L1.bioguide_id != L2.bioguide_id; 
 
 /*
 4
@@ -47,7 +47,7 @@ select `Last Name`, Bill_id  from ((select bioguide_id from Term where state ='N
 Union
 Union the shared fields from amendment and bill, represents all pieces of legislation in the database:
 */
-select * from (select id, type, status, introduced_at as introduction_date, congress, number from Amendment) as t1 union (select id, type, status, introduction_date, congress, number from Bill) limit 10 limit 10;
+select * from (select id, type, status, introduced_at as introduction_date, congress, number from Amendment) as t1 union (select id, type, status, introduction_date, congress, number from Bill) limit 10;
 
 /*
 9
