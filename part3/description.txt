@@ -186,8 +186,7 @@ _________________
      |       not in (select Vote_id as id from Legislator_Vote);
      `----
 
-
-  1. Add a new Legislator (a special election has occured and Ron Estes
+  5. Add a new Legislator (a special election has occured and Ron Estes
      needs to be added).
      ,----
      | insert into Legislator (bioguide_id, `Last Name`, `First Name`, 
@@ -197,7 +196,7 @@ _________________
      | ('E000298', 'Estes', 'Ron', '1956-07-19', 'M', NULL, 412735, NULL);
      `----
 
-  2. Add a new term for that legislator (each legislator should have a
+  6. Add a new term for that legislator (each legislator should have a
      corresponding Term)
      ,----
      | insert into Term 

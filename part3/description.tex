@@ -1,4 +1,4 @@
-% Created 2017-04-16 Sun 16:38
+% Created 2017-04-16 Sun 16:40
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -194,10 +194,7 @@ delete from Vote
 where id 
       not in (select Vote_id as id from Legislator_Vote);
 \end{verbatim}
-\end{enumerate}
 
-
-\begin{enumerate}
 \item Add a new Legislator (a special election has occured and Ron Estes needs to be added).
 \begin{verbatim}
 insert into Legislator (bioguide_id, `Last Name`, `First Name`, 
