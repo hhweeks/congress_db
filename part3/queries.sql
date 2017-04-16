@@ -77,81 +77,11 @@ Count the number of terms a member of congress has served (only if we have a rec
 */
 select bioguide_id, `First Name`, `Last Name`, Terms from (select bioguide_id, count(bioguide_id) as Terms from Term GROUP BY bioguide_id) as tm natural join Legislator where bioguide_id in (select bioguide_id from Legislator_Vote) ORDER BY Terms DESC limit 10;
 
-/********************************************************************************/
-/*modification*/
-/********************************************************************************/
-start transaction;
-/*
-1
-Update
-If a Legislator does not have a full name update it with their wikipedia id (which is a full name) only if wikipedia id is not null as well
-*/
-update Legislator set official_full_name=wikipedia_id where official_full_name IS NULL and wikipedia_id IS NOT NULL;
-
-/*
-2
-Update
-Change a legislators end date for a specific congress (like if they have been removed from office)
-*/
-update Term
-       set end = '2017-05-01'
-       	   where bioguide_id = (select bioguide_id from Legislator where `First Name` = 'Tom' and `Last Name` = 'Marino') and end > '2017-05-01';
-
-/*
-3
-Deletion
-Delete all Legislators , Sponsor, and Terms for those legislator if they never participated in a vote in our data
-*/
-delete from Term where bioguide_id not in (select bioguide_id from Legislator_Vote);
-delete from Sponsor where Legislator_id not in (select bioguide_id from Legislator_Vote);
-delete from Legislator where bioguide_id not in (select bioguide_id from Legislator_Vote);
-
-/*
-4
-Deletion
-Delete all votes that we do not have a record of Legislators voting on it
-*/
-delete from Vote where id not in (select Vote_id as id from Legislator_Vote);
-
-/*
-5
-Insert
-Add a new Legislator
-*/
-Insert into Legislator (bioguide_id, `Last Name`, `First Name`, birthday, gender, `wikipedia_id`, govtrack_id, official_full_name)     Value     ('E000298', 'Estes', 'Ron', '1956-07-19', 'M', NULL, 412735, NULL);
-
-/*
-6
-Insert
-Add a new term for that legislator
-*/
-insert into Term VALUE ('E000298', '2017-04-27', '2019-01-03', 'rep', 'KS', NULL, 4, 'Republican', 'h');
-
-rollback;
-
-/********************************************************************************/
-/*useful indexes
-/********************************************************************************/
-/*1*/
-select L1.birthday, L1.bioguide_id, L1.`First Name`, L1.`Last Name`, L2.bioguide_id, L2.`First Name`, L2.`Last Name` from Legislator L1, Legislator L2 where L1.birthday = L2.birthday and L1.bioguide_id != L2.bioguide_id;
-
-create index bday on Legislator (birthday);
-select L1.birthday, L1.bioguide_id, L1.`First Name`, L1.`Last Name`, L2.bioguide_id, L2.`First Name`, L2.`Last Name` from Legislator L1, Legislator L2 where L1.birthday = L2.birthday and L1.bioguide_id != L2.bioguide_id;
-
-drop index bday on Legislator;
-
-/*2*/
+/*13
+Find all legislators that share a last name
+ */
 select L1.bioguide_id, L1.`First Name`, L1.`Last Name`,L2.bioguide_id, L2.`First Name`, L2.`Last Name` from Legislator L1, Legislator L2 where L1.`Last Name` = L2.`Last Name` and L1.bioguide_id != L2.bioguide_id;
 
-create index lastName on Legislator (`Last Name`);
-select L1.bioguide_id, L1.`First Name`, L1.`Last Name`,L2.bioguide_id, L2.`First Name`, L2.`Last Name` from Legislator L1, Legislator L2 where L1.`Last Name` = L2.`Last Name` and L1.bioguide_id != L2.bioguide_id;
-
-drop index lastName on Legislator;
-
-/*3*/
+/*14
+Find all the ways that have been voted*/
 select distinct how_voted from Legislator_Vote;
-
-create index voteindex on Legislator_Vote(how_voted);
-select distinct how_voted from Legislator_Vote;
-
-drop index voteindex on Legislator_Vote;
