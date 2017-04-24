@@ -1,0 +1,10 @@
+vagrant:
+
+tar xf ../part2/import_data.tar.gz
+vagrant up
+
+vagrant ssh
+
+mysql password for user root is vagrant
+
+database should be imported on first provision provided import data has been extracted
