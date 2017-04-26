@@ -1,5 +1,7 @@
 <?php
 
+//ini_set('display_errors', 1);
+
 foreach (array_keys ($_GET) as $key) {
     $v = $_GET[$key];
     if (!is_numeric($v)) {
