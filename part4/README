@@ -8,3 +8,41 @@ vagrant ssh
 mysql password for user root is vagrant
 
 database should be imported on first provision provided import data has been extracted
+
+** ASSIGNMENT
+
+
+Due: 10th May, 2017 by 11:59PM
+
+
+In this part of the project, you will interact with your PDA database from an external program. Your task is to build a moderately user-friendly interactive application program front end to your PDA using a programming language. Your program should consist of a continuous loop in which: 
+
+
+You should include both search queries and modifications among your options. As in Part 3, please include some "interesting" queries or modifications, i.e., operations that require some of the more complex SQL constructs such as subqueries, aggregates, set operators, etc. As a general example, if your PDA is a campus applicant database, then your interface might include in its menu a number of useful queries on the database, with both input and output in a format more convenient and pleasing than raw interactive SQL. Some queries perform statistical analysis requiring multiple levels of grouping, other queries are simpler. 
+
+
+What to turn in:
+
+
+You will submit a URL hosted in the CS department. Name the file URL.txt.
+
+
+You will report effort level of each of the team members. The sum of the effort levels should equal to 100 percent. The reported levels from the team members must match. If we see discrepancy, the team will receive zero. We will use the effort level to weigh the grades for the entire project. Name the file Effort.txt.
+
+You will submit a report with the following information for each user action (either search or modification). Name the file Report.docx or Report.pptx. Let us take an example user action in a Campus Applicant Database; applying to the graduate program of a department.
+
+1. The query executed for the user action. It is OK if the query contains variable names, etc. For example, "Insert into applicants values (Name, Email, Phone, Address, Department, Program)"
+
+2. Screenshots of "before" and "after" states of the website on successful execution of the user action. For example, show the Applicants table in the database before and after the user action of adding the applicant to the database. Note, we mean screenshots of the website, not the screenshots of the database terminal.
+
+3. Description of the constraints you enforce in both front and back end of the website. For example, in the applicant database, you may want to prevent non-numeric characters in phone number. 
+You may consider uploading a 10-minutes video, instead of the screenshots in the report, with embedded audio to describe all the user actions on the website in a single video. Note, you will still need to submit the queries and constraints in the report.
+
+
+Grading criteria:
+
+1. If the following URL [a] is accessible, we will assume that the department server is working. 
+[a] http://www.cs.unm.edu/~chavoshi/debot/daily_report_main.php
+
+
+2. We will check completeness, correctness and fault tolerance. For completeness, we will count number of user actions you support compared to what you proposed in Project part 3. For correctness, we will try to reproduce the screenshots/video that you provided. For fault tolerance, we will test potentially harmful queries to make your database inconsistent. 
