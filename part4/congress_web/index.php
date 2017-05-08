@@ -40,9 +40,14 @@ $columnname =  array("Bill ID", "Title", "Type", "Current Status", "Date");
 		    <?php while ($row = $r->fetch_array()) { ?>
 		        <tr>
 		        <?php 
-		        
+		        $id = urlencode($row['id']);
 		        for ($i=0; $i<5; $i++) { 
-		            print ("<td>$row[$i]</td>");
+                    if ($i < 2) {
+		              print ("<td><a href=\"bill.php?id=$id\">$row[$i]</a></td>");
+                    } else {
+                        print ("<td>$row[$i]</td>");
+                    }
+
 		        }
 		        ?>
 		        </tr>
@@ -88,7 +93,11 @@ if (!$r) {
 		        <?php 
 		        
 		        for ($i=0; $i<5; $i++) { 
-		            print ("<td>$row[$i]</td>");
+                    if ($i < 2) {
+                      print ("<td><a href=\"bill.php?id=$id\">$row[$i]</a></td>");
+                    } else {
+                        print ("<td>$row[$i]</td>");
+                    }
 		        }
 		        ?>
 		        </tr>
