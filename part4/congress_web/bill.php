@@ -45,7 +45,7 @@ $stmt->fetch();
             <dt>number</dt>
             <dd><?= $number ?></dd>
             <dt>summary</dt>
-            <dd><?= $summary ?></dd>
+            <dd><?= nl2br($summary); ?></dd>
         </dl>
     </div>
 </div>
