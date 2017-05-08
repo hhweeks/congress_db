@@ -3,54 +3,15 @@
 $Title = "Home";
 
 include('header.php'); ?>
-<!-- Primary Page Layout
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div class="container">
+
+
 <div class="row">
-    <div class="one-half column">
-    <h4>Basic Page</h4>
-    <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
-    </div>
+	<div class="twelve column">
 
-<div class="twelve column">
 <?php
-
-//ini_set('display_errors', 1);
-
-foreach (array_keys ($_GET) as $key) {
-    $v = $_GET[$key];
-    if (!is_numeric($v)) {
-        $_GET[$key] = $db->real_escape_string($v);
-    }
-}
-
-foreach (array_keys ($_POST) as $key) {
-    $v = $_POST[$key];
-    if (!is_numeric($v)) {
-        $_POST[$key] = $db->real_escape_string($v);
-    }
-}
-
-require_once('config.php');
-$limit = 5;
-if (!empty($_GET['limit'])) {
-    $limit = $_GET['limit'];
-}
-
-// TODO 3: Add $limit to the value of the <input> limit
-echo <<<EOH
-<form action="index.php">
-Limit: <input type="text" name="limit" value="$limit"/>
-<input type="submit" />
-</form>
-EOH;
-
-
-// TODO 1: Copy and paste your query from exercise 2 here,
-//       then add a LIMIT and use the variable $limit from above.
-
 $sql =<<<EOQ
-SELECT `Last Name`, COUNT(`Last Name`) from Legislator group by `Last Name` limit $limit
+SELECT Bill.id, title, Bill.type, status, date, result
+FROM Bill join Vote ON Bill.id = Vote.Bill_id where Vote.type = 'On Passage of the Bill' AND result = 'Bill Passed' AND Vote.chamber = 's' ORDER BY date limit 5;
 EOQ;
 
 $r = $db->query($sql);
@@ -61,22 +22,80 @@ if (!$r) {
 }
 
 // TODO 2: Paste the $columnname variable from exercise 2 here
-$columnname =  array("Last Name", "Count");
-
-echo "<table>\n";
-echo "<tr><th>$columnname[0]</th><th>$columnname[1]</th></tr>\n";
-while ($row = $r->fetch_array()) {
-    print ("<tr>\n");
-    for ($i=0; $i<2; $i++) {
-        print ("<td>$row[$i]</td>");
-    }
-    print ("</tr>\n");
-}
-echo "</table>\n";
-
+$columnname =  array("Bill ID", "Title", "Type", "Current Status", "Date");
 ?>
+
+		<h2>5 most recently passed bills in the Senate:</h2>
+		<table>
+		    <thead>
+		        <tr>
+		        <?php for ($i=0; $i<5; $i++) { ?>
+		            <th>
+		                <?= $columnname[$i]; ?>
+		            </th>
+		        <?php } //end for ?>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    <?php while ($row = $r->fetch_array()) { ?>
+		        <tr>
+		        <?php 
+		        
+		        for ($i=0; $i<5; $i++) { 
+		            print ("<td>$row[$i]</td>");
+		        }
+		        ?>
+		        </tr>
+		    <?php } //end while ?>
+		    </tbody>
+		</table>
+	</div>
 </div>
-</div>
+
+<?php $r->close(); ?>
+
+<div class="row">
+	<div class="twelve column">
+
+<?php
+$sql =<<<EOQ
+SELECT Bill.id, title, Bill.type, status, date, result
+FROM Bill join Vote ON Bill.id = Vote.Bill_id where Vote.type = 'On Passage of the Bill' AND result = 'Passed' AND Vote.chamber = 'h' ORDER BY date limit 5;
+EOQ;
+
+$r = $db->query($sql);
+
+if (!$r) {
+    printf ("Query '$sql' failed: %s (%d)\n", $db->error, $db->errno);
+    exit();
+}
+?>
+
+		<h2>5 most recently passed bills in the house:</h2>
+		<table>
+		    <thead>
+		        <tr>
+		        <?php for ($i=0; $i<5; $i++) { ?>
+		            <th>
+		                <?= $columnname[$i]; ?>
+		            </th>
+		        <?php } //end for ?>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    <?php while ($row = $r->fetch_array()) { ?>
+		        <tr>
+		        <?php 
+		        
+		        for ($i=0; $i<5; $i++) { 
+		            print ("<td>$row[$i]</td>");
+		        }
+		        ?>
+		        </tr>
+		    <?php } //end while ?>
+		    </tbody>
+		</table>
+	</div>
 </div>
 
 <?php include('footer.php'); ?>
