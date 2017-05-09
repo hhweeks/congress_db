@@ -56,7 +56,7 @@ $columnname = array('id', 'description', 'Introduced at');
         <table>
             <thead>
                 <tr>
-                <?php for ($i=0; $i<2; $i++) { ?>
+                <?php for ($i=0; $i<3; $i++) { ?>
                     <th>
                         <?= $columnname[$i]; ?>
                     </th>
