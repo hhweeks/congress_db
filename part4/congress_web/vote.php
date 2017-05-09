@@ -62,7 +62,7 @@ if(!$stmt->fetch()){
         <?php } ?>
         <?php if ($Amendment_id) { ?>
         <dt>Related Amendment</dt>
-        <dd><a href="bill.php?id=<?= urlencode($Amendment_id) ?>"><?= $Amendment_id ?></a></dd>
+        <dd><a href="amendment.php?id=<?= urlencode($Amendment_id) ?>"><?= $Amendment_id ?></a></dd>
         <?php } ?>
         </dl>
     </div>
