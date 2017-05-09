@@ -50,6 +50,4 @@ $stmt->fetch();
     </div>
 </div>
 
-<?php stmt->close(); ?>
-
 <?php include('footer.php'); ?>

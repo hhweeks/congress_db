@@ -92,8 +92,8 @@ $columnname = array('Bill ID', 'Title', 'Introduction Date', 'Congress');
             <tbody>
             <?php while ($stmt->fetch()) { ?>
                 <tr>
-                    <td><?= $bill_id ?></td>
-                    <td><?= $title ?></td>
+                    <td><a href="bill.php?id=<?= $bill_id ?>"><?= $bill_id ?></a></td>
+                    <td><a href="bill.php?id=<?= $bill_id ?>"><?= $title ?></a></td>
                     <td><?= $introduction_date ?></td>
                     <td><?= $bill_congress ?></td>
                 </tr>
