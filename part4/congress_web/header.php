@@ -35,8 +35,12 @@
                 <li><a class="button button-primary" href="bills.php">Find a bill</a></li>
                 <li><a class="button button-primary" href="legislators.php">Find a Legislator</a></li>
                 <li><a class="button button-primary" href="votes.php">Recent Votes</a></li>
-
             </ul>
+
+            <?php if (isset($Title)) {
+                echo "<h2>$Title</h2>";
+            } 
+            ?>
         </div>
     </div>
 
