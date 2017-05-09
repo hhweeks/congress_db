@@ -44,6 +44,29 @@ $stmt->fetch();
             <dd><?= $congress ?></dd>
             <dt>number</dt>
             <dd><?= $number ?></dd>
+            <dt>subjects</dt>
+            <dd>
+            <ul>
+            <?php 
+            $substmt = $db->prepare("SELECT subject FROM Subject WHERE Bill_id=?");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($subject);
+
+            while ($substmt->fetch()) {
+                $urlsubject = urlencode($subject);
+                print("<li><a href=\"bill-subject.php?subject=$urlsubject\">$subject</a></li>");
+            }
+
+            $substmt->close();
+            ?>
+            </ul>
+            </dd>
             <dt>summary</dt>
             <dd><?= nl2br($summary); ?></dd>
         </dl>
