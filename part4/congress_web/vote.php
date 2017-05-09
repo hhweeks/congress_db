@@ -36,7 +36,7 @@ if(!$stmt->fetch()){
 
 <div class="row">
     <div class="twelve column">
-        <h4><?= $title ?></h4>
+        <h4><?= $question ?></h4>
         <dl>
         <dt>id</dt>
         <dd><?= $id ?></dd>
@@ -48,6 +48,22 @@ if(!$stmt->fetch()){
         <dd><?= $question ?></dd>
         <dt>date</dt>
         <dd><?= $date ?></dd>
+        <dt>result</dt>
+        <dd><?= $result ?></dd>
+        <dt>congress</dt>
+        <dd><?= $congress ?></dd>
+        <dt>number</dt>
+        <dd><?= $number ?></dd>
+        <dt>type</dt>
+        <dd><?= $type ?></dd>
+        <?php if ($Bill_id) { ?>
+        <dt>Related Bill</dt>
+        <dd><a href="bill.php?id=<?= urlencode($Bill_id) ?>"><?= $Bill_id ?></a></dd>
+        <?php } ?>
+        <?php if ($Amendment_id) { ?>
+        <dt>Related Amendment</dt>
+        <dd><a href="bill.php?id=<?= urlencode($Amendment_id) ?>"><?= $Amendment_id ?></a></dd>
+        <?php } ?>
         </dl>
     </div>
 </div>
