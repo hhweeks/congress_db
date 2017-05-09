@@ -121,6 +121,30 @@ include('header.php');?>
             $substmt->close();
             ?>
             </dd>
+           <dt>Recent votes</dt>
+            <dd>
+            <?php 
+            $substmt = $db->prepare("SELECT Vote_id FROM Legislator_Vote WHERE bioguide_id=? limit 10");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($Vote_id);
+
+            ?>
+            <ul>
+                <?php while ($substmt->fetch()) { ?>
+                   <li><a href="vote.php?id=<?= urlencode($Vote_id) ?>"><?= $Vote_id ?></a></li>
+                <?php } //end while ?>
+            </ul>
+            
+            <?php
+            $substmt->close();
+            ?>
+            </dd>
         </dl>
     </div>
 </div>
