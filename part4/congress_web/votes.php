@@ -1,57 +1,80 @@
 <?php
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-} else {
-    http_response_code(404);
-    $Title = "Error 404, Bill not found";
-    include('header.php');
-    include('404.php'); // provide your own HTML for the error page
-    include('footer.php');
-    die();
-}
+$Title = "Votes";
 
-$Title = "Vote " . $id;
+include('header.php'); ?>
 
-include('header.php');
-$stmt = $db->prepare("SELECT id, chamber, category, question, congress, session, result, requires, number, date, type, Bill_id, Amendment_id FROM Vote WHERE id=?");
+<?php
+$sql =<<<EOQ
+SELECT id as number from Congress ORDER BY id DESC;
+EOQ;
 
-$stmt->bind_param("s", $id);
-
-$stmt->execute();
-
-$stmt->store_result();
-
-$stmt->bind_result($vote_id, $chamber, $category, $question, $congress, $session, $result, $requires, $number, $date, $type, $Bill_id, $Amendment_id);
-
-if(!$stmt->fetch()){
-    http_response_code(404);
-    $Title = "Error 404, Vote not found";
-    include('404.php');
-    include('footer.php');
-    die();
-}
-
+$r = $db->query($sql);
 ?>
 
-<div class="row">
-    <div class="twelve column">
-        <h4><?= $title ?></h4>
-        <dl>
-        <dt>id</dt>
-        <dd><?= $id ?></dd>
-        <dt>chamber</dt>
-        <dd><?= $chamber ?></dd>
-        <dt>category</dt>
-        <dd><?= $category ?></dd>
-        <dt>question</dt>
-        <dd><?= $question ?></dd>
-        <dt>date</dt>
-        <dd><?= $date ?></dd>
-        </dl>
+<div class "row">
+    <div class="twelve columns">
+        <form action="search.php" method="get">
+            <div class="row">
+            <div class="six columns">
+                <label for="query">Your email</label>
+                <input class="u-full-width" type="text" placeholder="e.g. vote title" name="query">
+            </div>
+            <div class="six columns">
+                <label for="congress">Congress</label>
+                <select class="u-full-width" name="congress">
+                <option value="any">Any</option>
+                <?php while ($row = $r->fetch_array()) { ?>
+                <option value="<?= $row['number'] ?>"><?= $row['number']; ?></option>
+                <?php } // end while ?>
+            </select>
+            </div>
+            </div>
+            <input class="button-primary" type="submit" value="Search">
+        </form>
     </div>
 </div>
 
-    
+<?php $r->close(); ?>
 
-<?php include('footer.php');?>
+<div class="row">
+    <div class="eight columns">
+<?php
+
+$limit = 20;
+
+$sql =<<<EOQ
+select id, question FROM Vote ORDER BY introduction_date limit $limit;
+EOQ;
+
+$r = $db->query($sql);
+
+$columnname = array('id', 'question');
+?>
+        <h4>Recently votes:</h4>
+        <table>
+            <thead>
+                <tr>
+                <?php for ($i=0; $i<2; $i++) { ?>
+                    <th>
+                        <?= $columnname[$i]; ?>
+                    </th>
+                <?php } //end for ?>
+                </tr>
+            </thead>
+            <tbody>
+            <?php while ($row = $r->fetch_array()) { ?>
+                <tr>
+                <?php for ($i=0; $i<2; $i++) { ?>
+                   <td><a href="vote.php?id=<?= urlencode($row[0]) ?>"><?= $row[$i] ?></td>
+                <?php } ?>
+                </tr>
+            <?php } //end while ?>
+            </tbody>
+        </table>
+<?php $r->close(); ?>
+    </div>
+    <div class="four columns">
+<?php
+
+<?php include('footer.php'); ?>
