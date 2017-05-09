@@ -97,6 +97,30 @@ include('header.php');?>
             $substmt->close();
             ?>
             </dd>
+            <dt>Sponsored Bills</dt>
+            <dd>
+            <?php 
+            $substmt = $db->prepare("SELECT Bill_id FROM Sponsor WHERE Legislator_id=?");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($Bill_id);
+
+            ?>
+            <ul>
+                <?php while ($substmt->fetch()) { ?>
+                   <li><a href="bill.php?id=<?= urlencode($Bill_id) ?>"><?= $Bill_id ?></a></li>
+                <?php } //end while ?>
+            </ul>
+            
+            <?php
+            $substmt->close();
+            ?>
+            </dd>
         </dl>
     </div>
 </div>
