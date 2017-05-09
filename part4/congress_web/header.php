@@ -32,9 +32,10 @@
             <h1>Congress Database</h1>
             <ul class="navbar">
                 <li><a class="button button-primary" href="index.php">Home</a></li>
-                <li><a class="button button-primary" href="bills.php">Find a bill</a></li>
                 <li><a class="button button-primary" href="legislators.php">Find a Legislator</a></li>
-                <li><a class="button button-primary" href="votes.php">Recent Votes</a></li>
+                <li><a class="button button-primary" href="bills.php">Find a bill</a></li>
+                <li><a class="button button-primary" href="votes.php">Find Votes</a></li>
+                <li><a class="button button-primary" href="amendments.php">Find Amendments</a></li>
             </ul>
 
             <?php if (isset($Title)) {

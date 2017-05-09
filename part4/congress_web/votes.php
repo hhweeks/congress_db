@@ -17,8 +17,8 @@ $r = $db->query($sql);
         <form action="search.php" method="get">
             <div class="row">
             <div class="six columns">
-                <label for="query">Your email</label>
-                <input class="u-full-width" type="text" placeholder="e.g. vote title" name="query">
+                <label for="query">Query</label>
+                <input class="u-full-width" type="text" placeholder="e.g. vote question" name="query">
             </div>
             <div class="six columns">
                 <label for="congress">Congress</label>
