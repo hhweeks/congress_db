@@ -1,6 +1,8 @@
 <?php
 ini_set('display_errors', 1);
 
+$webroot = '/';
+
 $host = 'localhost';
 $user = 'root';
 $password = 'vagrant';

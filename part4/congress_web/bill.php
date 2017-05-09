@@ -24,7 +24,13 @@ $stmt->store_result();
 
 $stmt->bind_result($bill_id, $type, $title, $popular_title, $short_title, $status, $introduction_date, $summary, $congress, $number);
 
-$stmt->fetch();
+if (!$stmt->fetch()) {
+    http_response_code(404);
+    $Title = "Error 404, Bill not found";
+    include('404.php'); // provide your own HTML for the error page
+    include('footer.php');
+    die();
+}
 
 ?>
 
