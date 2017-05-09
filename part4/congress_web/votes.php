@@ -1,8 +1,8 @@
 <?php
 
 $Title = "Votes";
-
-include('header.php'); ?>
+include('header.php');
+?>
 
 <?php
 $sql =<<<EOQ
@@ -37,21 +37,19 @@ $r = $db->query($sql);
 
 <?php $r->close(); ?>
 
-<div class="row">
-    <div class="eight columns">
 <?php
 
 $limit = 20;
 
 $sql =<<<EOQ
-select id, question FROM Vote ORDER BY introduction_date limit $limit;
+select id, question FROM Vote ORDER BY date limit $limit;
 EOQ;
 
 $r = $db->query($sql);
 
 $columnname = array('id', 'question');
 ?>
-        <h4>Recently votes:</h4>
+        <h4>Recent votes:</h4>
         <table>
             <thead>
                 <tr>
@@ -72,9 +70,5 @@ $columnname = array('id', 'question');
             <?php } //end while ?>
             </tbody>
         </table>
-<?php $r->close(); ?>
-    </div>
-    <div class="four columns">
-<?php
 
 <?php include('footer.php'); ?>
