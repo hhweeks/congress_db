@@ -13,7 +13,7 @@ $r = $db->query($sql);
         <form action="search.php" method="get">
             <div class="row">
             <div class="six columns">
-                <label for="query">Your email</label>
+                <label for="query">Query</label>
                 <input class="u-full-width" type="text" placeholder="e.g. bill title" name="query">
             </div>
             <div class="six columns">
