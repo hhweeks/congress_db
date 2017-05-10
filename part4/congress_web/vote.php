@@ -68,7 +68,7 @@ if(!$stmt->fetch()){
             <dt>Voted on by Legislator</dt>
             <dd>
             <?php 
-            $substmt = $db->prepare("SELECT bioguide_id FROM Legislator_Vote WHERE Vote_id=?");
+            $substmt = $db->prepare("SELECT bioguide_id, how_voted, `Last Name` FROM Legislator_Vote natural join Legislator WHERE Vote_id=?");
 
             $substmt->bind_param("s", $id);
 
@@ -76,12 +76,18 @@ if(!$stmt->fetch()){
 
             $substmt->store_result();
 
-            $substmt->bind_result($bioguide_id);
+            $substmt->bind_result($bioguide_id, $how_voted, $last_name);
 
             ?>
             <ul>
                 <?php while ($substmt->fetch()) { ?>
-                   <li><a href="legislator.php?id=<?= urlencode($bioguide_id) ?>"><?= $bioguide_id ?></a></li>
+
+		   <li>
+		   <a href="legislator.php?id=<?= urlencode($bioguide_id) ?>"><?= $last_name ?></a>
+    		   <?= $how_voted ?>
+		   </li>
+
+		   
                 <?php } //end while ?>
             </ul>
             
@@ -89,8 +95,6 @@ if(!$stmt->fetch()){
             $substmt->close();
             ?>
             </dd>
-
-
         </dl>
     </div>
 </div>
