@@ -6,7 +6,7 @@ if (isset($_GET['query'])) {
     http_response_code(404);
     $Title = "Error 404, No Query Given";
     include('header.php');
-    include('searchbar.php');
+    include('searchbarbill.php');
     include('404.php'); // provide your own HTML for the error page
     include('footer.php');
     die();
@@ -16,7 +16,7 @@ if (strlen($query) < 5) {
     http_response_code(404);
     $Title = "Error 404, Query too short, need at least 5 characters";
     include('header.php');
-    include('searchbar.php');   
+    include('searchbarbill.php');   
     include('404.php'); // provide your own HTML for the error page
     include('footer.php');
     die();
@@ -32,7 +32,7 @@ if (isset($_GET['congress'])) {
     http_response_code(404);
     $Title = "Error 404, No Congress Given";
     include('header.php');
-    include('searchbar.php');
+    include('searchbarbill.php');
     include('404.php'); // provide your own HTML for the error page
     include('footer.php');
     die();
@@ -44,7 +44,7 @@ $Title = "Search";
 
 include('header.php');
 
-include('searchbar.php'); ?>
+include('searchbarbill.php'); ?>
 
 
 <div class="row">

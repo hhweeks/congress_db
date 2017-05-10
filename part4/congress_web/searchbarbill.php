@@ -10,7 +10,7 @@ $r = $db->query($sql);
 
 <div class "row">
     <div class="twelve columns">
-        <form action="search.php" method="get">
+        <form action="searchbill.php" method="get">
             <div class="row">
             <div class="six columns">
                 <label for="query">Query</label>

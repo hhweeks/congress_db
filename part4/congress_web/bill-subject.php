@@ -19,7 +19,7 @@ $Title = "Subject";
 
 include('header.php');
 
-include('searchbar.php'); ?>
+include('searchbarbill.php'); ?>
 
 
 <div class="row">

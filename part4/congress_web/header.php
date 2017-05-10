@@ -36,6 +36,7 @@
                 <li><a class="button button-primary" href="bills.php">Find a bill</a></li>
                 <li><a class="button button-primary" href="votes.php">Find Votes</a></li>
                 <li><a class="button button-primary" href="amendments.php">Find Amendments</a></li>
+                <li><a class="button button-primary" href="demographics.php">Demographics</a></li>
             </ul>
 
             <?php if (isset($Title)) {
