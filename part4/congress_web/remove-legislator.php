@@ -44,13 +44,6 @@ include('header.php') ?>
         die();
     }
 
-    if ($new_start >= $new_end) {
-    echo "<h4>Start must be before end date</h4>";
-    echo '<a class="button" href="change-term.php">Retry</a>';
-    include('footer.php');
-    die();
-    }
-
     ?>
 
     Submitted with
@@ -84,7 +77,6 @@ include('header.php') ?>
         include('footer.php');
         die();
     }
-
 
     $stmt = $db->prepare("UPDATE Term SET start=?, end=? WHERE bioguide_id=? AND start=? AND end=?;");
 

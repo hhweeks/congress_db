@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$Title = 'Change Term';
+$Title = 'Add Legislator';
 
 include('header.php') ?>
 
@@ -15,6 +15,9 @@ include('header.php') ?>
 </div>
 
 <?php } else if (isset($_POST['submit'])) {
+
+    $bioguide_min_invalid = 'A000000';
+    $bioguide_max_invalid = 'Z999999';
 
     if (isset($_POST['bioguide_id']) &&
         isset($_POST['old_start']) &&
@@ -42,13 +45,6 @@ include('header.php') ?>
         echo '<a class="button" href="change-term.php">Retry</a>';
         include 'footer.php';
         die();
-    }
-
-    if ($new_start >= $new_end) {
-    echo "<h4>Start must be before end date</h4>";
-    echo '<a class="button" href="change-term.php">Retry</a>';
-    include('footer.php');
-    die();
     }
 
     ?>
@@ -85,7 +81,6 @@ include('header.php') ?>
         die();
     }
 
-
     $stmt = $db->prepare("UPDATE Term SET start=?, end=? WHERE bioguide_id=? AND start=? AND end=?;");
 
     $stmt->bind_param("sssss", $new_start, $new_end, $bioguide_id, $old_start, $old_end);
@@ -100,13 +95,12 @@ include('header.php') ?>
 
 <?php } else { ?>
 
-<form name='input' action='change-term.php' method='post'>
+<form name='input' action='add-legislator.php' method='post'>
     <label for='bioguide_id'>bioguide id</label><input type='text' id='bioguide_id' placeholder='biogude id' name='bioguide_id' />
-    <label for='old_start'>old start</label><input type='text' id='old_start' placeholder='YYYY-MM-DD' name='old_start' />
-    <label for='old_end'>old end</label><input type='text' id='old_end' placeholder='YYYY-MM-DD' name='old_end' />
-    <label for='new_start'>new start</label><input type='text' id='new_start' placeholder='YYYY-MM-DD' name='new_start' />
-    <label for='new_end'>new end</label><input type='text' id='new_end' placeholder='YYYY-MM-DD' name='new_end' />
-    <input type='submit' value='Change-Term' name='submit' />
+    <label for='last_name'>Last Name</label><input type='text' id='last_name' placeholder='Last Name' name='last_name' />
+    <label for='first_name'>First Name</label><input type='text' id='first_name' placeholder='First Name' name='first_name' />
+    <label for='govtrack_id'>govtrack_id</label><input type='text' id='govtrack_id' placeholder='unique number' name='govtrack_id' />
+    <input type='submit' value='Add Legislator' name='submit' />
 </form>
 
 
