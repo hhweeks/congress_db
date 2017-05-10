@@ -56,7 +56,7 @@ if(!$stmt->fetch()){
         <dd><?= $number ?></dd>
         <dt>type</dt>
         <dd><?= $type ?></dd>
-        <?php if ($Bill_id) { ?>
+	<?php if ($Bill_id) { ?>
         <dt>Related Bill</dt>
         <dd><a href="bill.php?id=<?= urlencode($Bill_id) ?>"><?= $Bill_id ?></a></dd>
         <?php } ?>
@@ -64,6 +64,33 @@ if(!$stmt->fetch()){
         <dt>Related Amendment</dt>
         <dd><a href="amendment.php?id=<?= urlencode($Amendment_id) ?>"><?= $Amendment_id ?></a></dd>
         <?php } ?>
+
+            <dt>Voted on by Legislator</dt>
+            <dd>
+            <?php 
+            $substmt = $db->prepare("SELECT bioguide_id FROM Legislator_Vote WHERE Vote_id=?");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($bioguide_id);
+
+            ?>
+            <ul>
+                <?php while ($substmt->fetch()) { ?>
+                   <li><a href="legislator.php?id=<?= urlencode($bioguide_id) ?>"><?= $bioguide_id ?></a></li>
+                <?php } //end while ?>
+            </ul>
+            
+            <?php
+            $substmt->close();
+            ?>
+            </dd>
+
+
         </dl>
     </div>
 </div>
