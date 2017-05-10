@@ -96,6 +96,38 @@ if (!$stmt->fetch()) {
             ?>
             </ul>
             </dd>
+
+            <dt>Most recent vote:</dt>
+            <dd>
+            <?php 
+            $substmt = $db->prepare("SELECT id, how_voted, count(how_voted), question FROM Vote join Legislator_Vote ON Vote.id = Legislator_Vote.Vote_id WHERE Bill_id=? GROUP BY how_voted");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($vote_id, $how_voted, $count, $question);
+
+            if ($substmt->fetch()) {
+            ?>
+            <p>Vote: <a href="vote.php?id=<?= urlencode($vote_id) ?>"><?= $vote_id ?></a></p>
+            <p>Question: <?= $question ?>
+
+            <?php
+                print("<ul>\n");
+                print("<li>$how_voted = $count</li>");
+            }
+
+            while ($substmt->fetch()) {
+                print("<li>$how_voted = $count</li>");
+            }
+
+            $substmt->close();
+            ?>
+            </ul>
+            </dd>
             <dt>summary</dt>
             <dd><?= nl2br($summary); ?></dd>
         </dl>
