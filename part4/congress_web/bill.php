@@ -73,6 +73,29 @@ if (!$stmt->fetch()) {
             ?>
             </ul>
             </dd>
+            <dt>Amendments</dt>
+            <dd>
+             <ul>
+            <?php 
+            $substmt = $db->prepare("SELECT id FROM Amendment WHERE Bill_id=?");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($Amendment_id);
+
+            while ($substmt->fetch()) {
+                $urlamend = urlencode($Amendment_id);
+                print("<li><a href=\"amendment.php?id=$urlamend\">$Amendment_id</a></li>");
+            }
+
+            $substmt->close();
+            ?>
+            </ul>
+            </dd>
             <dt>summary</dt>
             <dd><?= nl2br($summary); ?></dd>
         </dl>
