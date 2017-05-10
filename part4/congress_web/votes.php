@@ -12,7 +12,7 @@ include('searchbarvote.php');
 $limit = 20;
 
 $sql =<<<EOQ
-select id, question FROM Vote ORDER BY date limit $limit;
+select id, question FROM Vote ORDER BY date DESC limit $limit;
 EOQ;
 
 $r = $db->query($sql);

@@ -100,7 +100,7 @@ if (!$stmt->fetch()) {
             <dt>Most recent vote:</dt>
             <dd>
             <?php 
-            $substmt = $db->prepare("SELECT id, how_voted, count(how_voted), question FROM Vote join Legislator_Vote ON Vote.id = Legislator_Vote.Vote_id WHERE Bill_id=? GROUP BY how_voted");
+            $substmt = $db->prepare("SELECT id, how_voted, count(how_voted), question FROM Vote join Legislator_Vote ON Vote.id = Legislator_Vote.Vote_id WHERE Bill_id=? GROUP BY how_voted ORDER BY date DESC");
 
             $substmt->bind_param("s", $id);
 
