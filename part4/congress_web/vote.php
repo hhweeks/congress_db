@@ -69,16 +69,16 @@ if(!$stmt->fetch()){
 	    <dt>Vote breakdown by party</dt>
             <dd>
             <?php 
-            $substmt = $db->prepare("select how_voted, party, COUNT(party) from Legislator_Vote natural join (Term natural join Legislator) where Vote_id=? and party = 'Democrat' group by how_voted");
+            $substmt = $db->prepare("select how_voted, party, COUNT(how_voted) from Legislator_Vote natural join Term WHERE Vote_id=? and start <= (select date from Vote where id=?) AND end >= (select date from Vote where id=?) group by party, how_voted;");
 
-            $substmt->bind_param("s", $id);
+            $substmt->bind_param("sss", $id, $id, $id);
 
             $substmt->execute();
 
             $substmt->store_result();
 
             $substmt->bind_result($how_voted, $party, $count_party);
-	    $columnname = array('how_voted', 'party', 'count_party');
+	       $columnname = array('how_voted', 'party', 'count_party');
 
             ?>
             <table>
@@ -89,34 +89,6 @@ if(!$stmt->fetch()){
 			<th>count_party</th>
                     </tr>
                 </thead>
-                <tbody>
-                <?php while ($substmt->fetch()) { ?>
-		   <tr>
-			<td><?= $how_voted ?></td>
-			<td><?= $party ?></td>
-			<td><?= $count_party ?></td>			
-		   </tr>
-		   
-                <?php } //end while ?>
-		</tbody>
-	    </table>
-            
-            <?php
-            $substmt->close();
-
-            $substmt = $db->prepare("select how_voted, party, COUNT(party) from Legislator_Vote natural join (Term natural join Legislator) where Vote_id=? and party = 'Republican' group by how_voted");
-
-            $substmt->bind_param("s", $id);
-
-            $substmt->execute();
-
-            $substmt->store_result();
-
-            $substmt->bind_result($how_voted, $party, $count_party);
-	    $columnname = array('how_voted', 'party', 'count_party');
-
-            ?>
-            <table>
                 <tbody>
                 <?php while ($substmt->fetch()) { ?>
 		   <tr>
