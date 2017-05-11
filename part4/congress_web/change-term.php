@@ -92,6 +92,8 @@ include('header.php') ?>
 
     if ($stmt->execute()) {
         echo "<h4>Term updated</h4>";
+    } else {
+        echo "<h4>Error updating term</h4>";
     }
 
     $stmt->close();
