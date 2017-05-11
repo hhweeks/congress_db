@@ -63,7 +63,78 @@ if(!$stmt->fetch()){
         <?php if ($Amendment_id) { ?>
         <dt>Related Amendment</dt>
         <dd><a href="amendment.php?id=<?= urlencode($Amendment_id) ?>"><?= $Amendment_id ?></a></dd>
-        <?php } ?>
+
+	<?php } ?>
+	
+	    <dt>Vote breakdown by party</dt>
+            <dd>
+            <?php 
+            $substmt = $db->prepare("select how_voted, party, COUNT(party) from Legislator_Vote natural join (Term natural join Legislator) where Vote_id=? and party = 'Democrat' group by how_voted");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($how_voted, $party, $count_party);
+	    $columnname = array('how_voted', 'party', 'count_party');
+
+            ?>
+            <table>
+                <thead>
+                    <tr>
+			<th>how_voted</th>
+			<th>party</th>
+			<th>count_party</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php while ($substmt->fetch()) { ?>
+		   <tr>
+			<td><?= $how_voted ?></td>
+			<td><?= $party ?></td>
+			<td><?= $count_party ?></td>			
+		   </tr>
+		   
+                <?php } //end while ?>
+		</tbody>
+	    </table>
+            
+            <?php
+            $substmt->close();
+
+            $substmt = $db->prepare("select how_voted, party, COUNT(party) from Legislator_Vote natural join (Term natural join Legislator) where Vote_id=? and party = 'Republican' group by how_voted");
+
+            $substmt->bind_param("s", $id);
+
+            $substmt->execute();
+
+            $substmt->store_result();
+
+            $substmt->bind_result($how_voted, $party, $count_party);
+	    $columnname = array('how_voted', 'party', 'count_party');
+
+            ?>
+            <table>
+                <tbody>
+                <?php while ($substmt->fetch()) { ?>
+		   <tr>
+			<td><?= $how_voted ?></td>
+			<td><?= $party ?></td>
+			<td><?= $count_party ?></td>			
+		   </tr>
+		   
+                <?php } //end while ?>
+		</tbody>
+	    </table>
+            
+            <?php
+            $substmt->close();
+
+            ?>
+            </dd>
+
 
             <dt>Voted on by Legislator</dt>
             <dd>
