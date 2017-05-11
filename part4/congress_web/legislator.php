@@ -41,6 +41,8 @@ include('header.php');?>
 <div class="row">
     <div class="twelve column">
         <dl>
+            <dt>bioguide_id</dt>
+            <dd><?= $bioguide_id ?></dd>
             <dt>photo</dt>
             <?php if (is_file("photos/" . $govtrack_id . "-200px.jpeg")) { ?>
             <dd><img src="<?= "photos/" . $govtrack_id . "-200px.jpeg"?>" alt="" /></dd>

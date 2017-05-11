@@ -46,7 +46,7 @@ $r = $db->query($sql);
     <div class="twelve columns">
 <?php
 
-$stmt = $db->prepare("select distinct govtrack_id, bioguide_id, `First Name`, `Last Name`, state, chamber from Legislator natural join Term where start >= (select begin from Congress where id = ?) and end <= (select end from Congress where id = ?) ORDER BY state, `Last Name`");
+$stmt = $db->prepare("select distinct govtrack_id, bioguide_id, `First Name`, `Last Name`, state, chamber from Legislator natural join Term where start < (select end from Congress where id = ?) and NOT (end <= (select begin from Congress where id = ?)) ORDER BY state, chamber, `Last Name`");
 
 $stmt->bind_param("dd", $congress, $congress); 
 
